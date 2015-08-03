@@ -1,0 +1,65 @@
+@extends("crud.layout-form")
+
+@section("form")
+
+
+
+<div class="form-group @if ($errors->has('id_cmb_nf_sshpinst_notes')) has-error @endif">
+
+ {{ Form::label("remotecombo", "Cmb_nf_sshpinst_note") }}
+   
+      {{ Form::remotecombo("id_cmb_nf_sshpinst_notes",$record->id_cmb_nf_sshpinst_notes,["table"=>$model,"class" => "form-control","placeholder"=>"Cmb_nf_sshpinst_note"] ); }}
+    
+ <span class="help-block">{{ $errors->first('id_cmb_nf_sshpinst_notes') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('id_cmb_nf_sshpinst')) has-error @endif">
+
+ {{ Form::label("remotecombo", "Cmb_nf_sshpinst") }}
+   
+      {{ Form::remotecombo("id_cmb_nf_sshpinst",$record->id_cmb_nf_sshpinst,["table"=>$model,"class" => "form-control","placeholder"=>"Cmb_nf_sshpinst"] ); }}
+    
+ <span class="help-block">{{ $errors->first('id_cmb_nf_sshpinst') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('notes')) has-error @endif">
+
+ {{ Form::label("textarea", "Notes") }}
+   
+      {{ Form::textarea("notes", $record->notes,["class" => "form-control","placeholder"=>"Notes"]) }}
+    
+ <span class="help-block">{{ $errors->first('notes') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('type')) has-error @endif">
+
+ {{ Form::label("radios", "Type") }}
+   
+      {{ Form::radiogroup("type",$record->type,[],$columns->type->data); }}
+    
+ <span class="help-block">{{ $errors->first('type') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('internal_use')) has-error @endif">
+
+ {{ Form::label("radiogroup", "Internal use") }}
+   
+      {{ Form::radiogroup("internal_use",$record->internal_use,[],$columns->internal_use->data); }}
+    
+ <span class="help-block">{{ $errors->first('internal_use') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('from_tbl')) has-error @endif">
+
+ {{ Form::label("radiogroup", "From tbl") }}
+   
+      {{ Form::radiogroup("from_tbl",$record->from_tbl,[],$columns->from_tbl->data); }}
+    
+ <span class="help-block">{{ $errors->first('from_tbl') }}</span>
+</div>
+
+     
+
+@stop
+
+

@@ -1,0 +1,128 @@
+@extends("crud.layout-form")
+
+@section("form")
+
+
+
+<div class="form-group @if ($errors->has('id_pcustomer')) has-error @endif">
+
+ {{ Form::label("remotecombo", "Pcustomer") }}
+   
+      {{ Form::remotecombo("id_pcustomer",$record->id_pcustomer,["table"=>$model,"class" => "form-control","placeholder"=>"Pcustomer"] ); }}
+    
+ <span class="help-block">{{ $errors->first('id_pcustomer') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('company')) has-error @endif">
+
+ {{ Form::label("text", "Company") }}
+   
+      {{ Form::text("company",$record->company,["class" => "form-control","placeholder"=>"Company"]); }}
+    
+ <span class="help-block">{{ $errors->first('company') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('address')) has-error @endif">
+
+ {{ Form::label("textarea", "Address") }}
+   
+      {{ Form::textarea("address", $record->address,["class" => "form-control","placeholder"=>"Address"]) }}
+    
+ <span class="help-block">{{ $errors->first('address') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('phone')) has-error @endif">
+
+ {{ Form::label("text", "Phone") }}
+   
+      {{ Form::text("phone",$record->phone,["class" => "form-control","placeholder"=>"Phone"]); }}
+    
+ <span class="help-block">{{ $errors->first('phone') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('contact_name')) has-error @endif">
+
+ {{ Form::label("text", "Contact name") }}
+   
+      {{ Form::text("contact_name",$record->contact_name,["class" => "form-control","placeholder"=>"Contact name"]); }}
+    
+ <span class="help-block">{{ $errors->first('contact_name') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('consignee')) has-error @endif">
+
+ {{ Form::label("text", "Consignee") }}
+   
+      {{ Form::text("consignee",$record->consignee,["class" => "form-control","placeholder"=>"Consignee"]); }}
+    
+ <span class="help-block">{{ $errors->first('consignee') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('consignee_phone')) has-error @endif">
+
+ {{ Form::label("text", "Consignee phone") }}
+   
+      {{ Form::text("consignee_phone",$record->consignee_phone,["class" => "form-control","placeholder"=>"Consignee phone"]); }}
+    
+ <span class="help-block">{{ $errors->first('consignee_phone') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('instructions')) has-error @endif">
+
+ {{ Form::label("textarea", "Instructions") }}
+   
+      {{ Form::textarea("instructions", $record->instructions,["class" => "form-control","placeholder"=>"Instructions"]) }}
+    
+ <span class="help-block">{{ $errors->first('instructions') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('order_num')) has-error @endif">
+
+ {{ Form::label("text", "Order num") }}
+   
+      {{ Form::text("order_num",$record->order_num,["class" => "form-control","placeholder"=>"Order num"]); }}
+    
+ <span class="help-block">{{ $errors->first('order_num') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('cnee_instructions')) has-error @endif">
+
+ {{ Form::label("textarea", "Cnee instructions") }}
+   
+      {{ Form::textarea("cnee_instructions", $record->cnee_instructions,["class" => "form-control","placeholder"=>"Cnee instructions"]) }}
+    
+ <span class="help-block">{{ $errors->first('cnee_instructions') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('pieces')) has-error @endif">
+
+ {{ Form::label("text", "Pieces") }}
+   
+      {{ Form::text("pieces",$record->pieces,["class" => "form-control","placeholder"=>"Pieces"]); }}
+    
+ <span class="help-block">{{ $errors->first('pieces') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('flag')) has-error @endif">
+
+ {{ Form::label("radiogroup", "Flag") }}
+   
+      {{ Form::radiogroup("flag",$record->flag,[],$columns->flag->data); }}
+    
+ <span class="help-block">{{ $errors->first('flag') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('status')) has-error @endif">
+
+ {{ Form::label("radiogroup", "Status") }}
+   
+      {{ Form::radiogroup("status",$record->status,[],$columns->status->data); }}
+    
+ <span class="help-block">{{ $errors->first('status') }}</span>
+</div>
+
+     
+
+@stop
+
+

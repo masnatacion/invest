@@ -1,0 +1,64 @@
+@extends("crud.layout-index")
+
+	@section("table")
+
+		<table class="table table-striped table-bordered ">
+			<thead>
+				<tr>
+
+					<td> {{ $columns->id_pobox_items->label }} </td>
+					<td> {{ $columns->id_pobox->label }} </td>
+					<td> {{ $columns->item_description->label }} </td>
+					<td> {{ $columns->carrier_name->label }} </td>
+					<td> {{ $columns->Tracking->label }} </td>
+					<td> {{ $columns->weight->label }} </td>
+					<td> {{ $columns->wunit->label }} </td>
+					<td> {{ $columns->size_width->label }} </td>
+					<td> {{ $columns->size_height->label }} </td>
+					<td> {{ $columns->size_length->label }} </td>
+					<td> {{ $columns->munit->label }} </td>
+					<td> {{ $columns->vol_weight->label }} </td>
+					<td> {{ $columns->chg_weight->label }} </td>
+					<td> {{ $columns->declared_value->label }} </td>
+					<td> {{ $columns->location->label }} </td>
+
+
+					@include("crud.index-column-buttons")
+
+				</tr>
+			</thead>
+			<tbody>
+
+			
+			@foreach($records as $record)
+				<tr>
+
+
+					<td>{{ parseToHTML($columns->id_pobox_items,$record,$fk_column) }}</td>
+					<td>{{ parseToHTML($columns->id_pobox,$record,$fk_column) }}</td>
+					<td>{{ parseToHTML($columns->item_description,$record,$fk_column) }}</td>
+					<td>{{ parseToHTML($columns->carrier_name,$record,$fk_column) }}</td>
+					<td>{{ parseToHTML($columns->Tracking,$record,$fk_column) }}</td>
+					<td>{{ parseToHTML($columns->weight,$record,$fk_column) }}</td>
+					<td>{{ parseToHTML($columns->wunit,$record,$fk_column) }}</td>
+					<td>{{ parseToHTML($columns->size_width,$record,$fk_column) }}</td>
+					<td>{{ parseToHTML($columns->size_height,$record,$fk_column) }}</td>
+					<td>{{ parseToHTML($columns->size_length,$record,$fk_column) }}</td>
+					<td>{{ parseToHTML($columns->munit,$record,$fk_column) }}</td>
+					<td>{{ parseToHTML($columns->vol_weight,$record,$fk_column) }}</td>
+					<td>{{ parseToHTML($columns->chg_weight,$record,$fk_column) }}</td>
+					<td>{{ parseToHTML($columns->declared_value,$record,$fk_column) }}</td>
+					<td>{{ parseToHTML($columns->location,$record,$fk_column) }}</td>
+
+
+					@include("crud.index-buttons")
+
+				</tr>
+			@endforeach
+
+
+
+			</tbody>
+		</table>
+
+	@stop

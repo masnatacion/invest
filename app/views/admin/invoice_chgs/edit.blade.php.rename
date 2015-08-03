@@ -1,0 +1,47 @@
+@extends("crud.layout-form")
+
+@section("form")
+
+
+
+<div class="form-group @if ($errors->has('id_invoice')) has-error @endif">
+
+ {{ Form::label("remotecombo", "Invoice") }}
+   
+      {{ Form::remotecombo("id_invoice",$record->id_invoice,["table"=>$model,"class" => "form-control","placeholder"=>"Invoice"] ); }}
+    
+ <span class="help-block">{{ $errors->first('id_invoice') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('chgtype')) has-error @endif">
+
+ {{ Form::label("radiogroup", "Chgtype") }}
+   
+      {{ Form::radiogroup("chgtype",$record->chgtype,[],$columns->chgtype->data); }}
+    
+ <span class="help-block">{{ $errors->first('chgtype') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('description')) has-error @endif">
+
+ {{ Form::label("text", "Description") }}
+   
+      {{ Form::text("description",$record->description,["class" => "form-control","placeholder"=>"Description"]); }}
+    
+ <span class="help-block">{{ $errors->first('description') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('chgamount')) has-error @endif">
+
+ {{ Form::label("text", "Chgamount") }}
+   
+      {{ Form::text("chgamount",$record->chgamount,["class" => "form-control","placeholder"=>"Chgamount"]); }}
+    
+ <span class="help-block">{{ $errors->first('chgamount') }}</span>
+</div>
+
+     
+
+@stop
+
+

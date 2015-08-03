@@ -1,0 +1,49 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+
+class CreateCmbNfProbshpTable extends Migration {
+
+	/**
+	 * Run the migrations.
+	 *
+	 * @return void
+	 */
+	public function up()
+	{
+		Schema::create('cmb_nf_probshp', function(Blueprint $table)
+		{
+			$table->increments('id_cmb_nf_probshp');
+			$table->integer('id_pcustomer')->index('id_pcustomer');
+			$table->date('problem_date');
+			$table->string('shippers_name', 60);
+			$table->string('consignee_name', 60);
+			$table->enum('carrier', array('UPS','FEDEX','USPS','DHL','LASER SHIP','Others','TNT'))->index();
+			$table->string('tracking', 40)->index();
+			$table->text('contents');
+			$table->integer('pieces');
+			$table->text('comments');
+			$table->enum('flag', array('On','Off'))->nullable();
+			$table->enum('status', array('New','In Process','Closed'))->index();
+			$table->integer('created_by');
+			$table->integer('updated_by')->nullable();
+			$table->timestamps();
+			$table->integer('deleted_by')->nullable();
+			$table->softDeletes();
+			$table->index(['carrier','tracking']);
+		});
+	}
+
+
+	/**
+	 * Reverse the migrations.
+	 *
+	 * @return void
+	 */
+	public function down()
+	{
+		Schema::drop('cmb_nf_probshp');
+	}
+
+}

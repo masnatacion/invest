@@ -1,0 +1,41 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+
+class CreateDeliveryReportsTable extends Migration {
+
+	/**
+	 * Run the migrations.
+	 *
+	 * @return void
+	 */
+	public function up()
+	{
+		Schema::create('delivery_reports', function(Blueprint $table)
+		{
+			$table->increments('id_delivery_reports');
+			$table->integer('id_agency');
+			$table->string('driver', 45);
+			$table->text('note');
+			$table->string('status');
+			$table->integer('created_by');
+			$table->integer('updated_by')->nullable();
+			$table->timestamps();
+			$table->integer('deleted_by')->nullable();
+			$table->softDeletes();
+		});
+	}
+
+
+	/**
+	 * Reverse the migrations.
+	 *
+	 * @return void
+	 */
+	public function down()
+	{
+		Schema::drop('delivery_reports');
+	}
+
+}

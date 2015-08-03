@@ -1,0 +1,47 @@
+@extends("crud.layout-form")
+
+@section("form")
+
+
+
+<div class="form-group @if ($errors->has('id_payments')) has-error @endif">
+
+ {{ Form::label("remotecombo", "Payment") }}
+   
+      {{ Form::remotecombo("id_payments",$record->id_payments,["table"=>$model,"class" => "form-control","placeholder"=>"Payment"] ); }}
+    
+ <span class="help-block">{{ $errors->first('id_payments') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('ref_num')) has-error @endif">
+
+ {{ Form::label("text", "Ref num") }}
+   
+      {{ Form::text("ref_num",$record->ref_num,["class" => "form-control","placeholder"=>"Ref num"]); }}
+    
+ <span class="help-block">{{ $errors->first('ref_num') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('exchangerate')) has-error @endif">
+
+ {{ Form::label("text", "Exchangerate") }}
+   
+      {{ Form::text("exchangerate",$record->exchangerate,["class" => "form-control","placeholder"=>"Exchangerate"]); }}
+    
+ <span class="help-block">{{ $errors->first('exchangerate') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('amount')) has-error @endif">
+
+ {{ Form::label("text", "Amount") }}
+   
+      {{ Form::text("amount",$record->amount,["class" => "form-control","placeholder"=>"Amount"]); }}
+    
+ <span class="help-block">{{ $errors->first('amount') }}</span>
+</div>
+
+     
+
+@stop
+
+

@@ -1,0 +1,83 @@
+@extends("crud.layout-form")
+
+@section("form")
+
+
+
+<div class="form-group @if ($errors->has('name')) has-error @endif">
+
+ {{ Form::label("text", "Name") }}
+   
+      {{ Form::text("name",$record->name,["class" => "form-control","placeholder"=>"Name"]); }}
+    
+ <span class="help-block">{{ $errors->first('name') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('smalldescription')) has-error @endif">
+
+ {{ Form::label("textarea", "Smalldescription") }}
+   
+      {{ Form::textarea("smalldescription", $record->smalldescription,["class" => "form-control","placeholder"=>"Smalldescription"]) }}
+    
+ <span class="help-block">{{ $errors->first('smalldescription') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('description')) has-error @endif">
+
+ {{ Form::label("textarea", "Description") }}
+   
+      {{ Form::textarea("description", $record->description,["class" => "form-control","placeholder"=>"Description"]) }}
+    
+ <span class="help-block">{{ $errors->first('description') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('category')) has-error @endif">
+
+ {{ Form::label("radiogroup", "Category") }}
+   
+      {{ Form::radiogroup("category",$record->category,[],$columns->category->data); }}
+    
+ <span class="help-block">{{ $errors->first('category') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('picture')) has-error @endif">
+
+ {{ Form::label("text", "Picture") }}
+   
+      {{ Form::text("picture",$record->picture,["class" => "form-control","placeholder"=>"Picture"]); }}
+    
+ <span class="help-block">{{ $errors->first('picture') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('thumbnail')) has-error @endif">
+
+ {{ Form::label("text", "Thumbnail") }}
+   
+      {{ Form::text("thumbnail",$record->thumbnail,["class" => "form-control","placeholder"=>"Thumbnail"]); }}
+    
+ <span class="help-block">{{ $errors->first('thumbnail') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('points')) has-error @endif">
+
+ {{ Form::label("number", "Points") }}
+   
+      {{ Form::number("points",$record->points,["class" => "form-control","placeholder"=>"Points"]); }}
+    
+ <span class="help-block">{{ $errors->first('points') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('status')) has-error @endif">
+
+ {{ Form::label("radiogroup", "Status") }}
+   
+      {{ Form::radiogroup("status",$record->status,[],$columns->status->data); }}
+    
+ <span class="help-block">{{ $errors->first('status') }}</span>
+</div>
+
+     
+
+@stop
+
+

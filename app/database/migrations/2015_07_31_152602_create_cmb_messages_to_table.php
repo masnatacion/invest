@@ -1,0 +1,42 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+
+class CreateCmbMessagesToTable extends Migration {
+
+	/**
+	 * Run the migrations.
+	 *
+	 * @return void
+	 */
+	public function up()
+	{
+		Schema::create('cmb_messages_to', function(Blueprint $table)
+		{
+			$table->increments('id_cmb_messages_to');
+			$table->integer('id_cmb_messages');
+			$table->integer('to_id_users');
+			$table->enum('to_id_type', array('Customer','User'));
+			$table->integer('to_flag');
+			$table->enum('to_status', array('Unread','Read'));
+			$table->integer('created_by');
+			$table->integer('updated_by')->nullable();
+			$table->timestamps();
+			$table->integer('deleted_by')->nullable();
+			$table->softDeletes();
+		});
+	}
+
+
+	/**
+	 * Reverse the migrations.
+	 *
+	 * @return void
+	 */
+	public function down()
+	{
+		Schema::drop('cmb_messages_to');
+	}
+
+}

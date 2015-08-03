@@ -1,0 +1,45 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+
+class CreateHandoverItemsTable extends Migration {
+
+	/**
+	 * Run the migrations.
+	 *
+	 * @return void
+	 */
+	public function up()
+	{
+		Schema::create('handover_items', function(Blueprint $table)
+		{
+			$table->increments('id_handover_items');
+			$table->integer('id_handover');
+			$table->date('date');
+			$table->integer('pieces');
+			$table->decimal('act_weight', 7, 3);
+			$table->decimal('size_l', 7, 3);
+			$table->decimal('size_h', 7, 3);
+			$table->decimal('size_w', 7, 3);
+			$table->string('comments', 60);
+			$table->integer('created_by');
+			$table->integer('updated_by')->nullable();
+			$table->timestamps();
+			$table->integer('deleted_by')->nullable();
+			$table->softDeletes();
+		});
+	}
+
+
+	/**
+	 * Reverse the migrations.
+	 *
+	 * @return void
+	 */
+	public function down()
+	{
+		Schema::drop('handover_items');
+	}
+
+}

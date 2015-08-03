@@ -1,0 +1,48 @@
+@extends("crud.layout-index")
+
+	@section("table")
+
+		<table class="table table-striped table-bordered ">
+			<thead>
+				<tr>
+
+					<td> {{ $columns->id_mawb->label }} </td>
+					<td> {{ $columns->issuedby->label }} </td>
+					<td> {{ $columns->airport_of_departure->label }} </td>
+					<td> {{ $columns->airport_of_destination->label }} </td>
+					<td> {{ $columns->total_num_of_pieces->label }} </td>
+					<td> {{ $columns->total_gross_weight->label }} </td>
+					<td> {{ $columns->executedon->label }} </td>
+
+
+					@include("crud.index-column-buttons")
+
+				</tr>
+			</thead>
+			<tbody>
+
+			
+			@foreach($records as $record)
+				<tr>
+
+
+					<td>{{ parseToHTML($columns->id_mawb,$record,$fk_column) }}</td>
+					<td>{{ parseToHTML($columns->issuedby,$record,$fk_column) }}</td>
+					<td>{{ parseToHTML($columns->airport_of_departure,$record,$fk_column) }}</td>
+					<td>{{ parseToHTML($columns->airport_of_destination,$record,$fk_column) }}</td>
+					<td>{{ parseToHTML($columns->total_num_of_pieces,$record,$fk_column) }}</td>
+					<td>{{ parseToHTML($columns->total_gross_weight,$record,$fk_column) }}</td>
+					<td>{{ parseToHTML($columns->executedon,$record,$fk_column) }}</td>
+
+
+					@include("crud.index-buttons")
+
+				</tr>
+			@endforeach
+
+
+
+			</tbody>
+		</table>
+
+	@stop

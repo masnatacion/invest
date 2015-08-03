@@ -1,0 +1,182 @@
+@extends("crud.layout-form")
+
+@section("form")
+
+
+
+<div class="form-group @if ($errors->has('id_pcustomer')) has-error @endif">
+
+ {{ Form::label("remotecombo", "Customer") }}
+   
+      {{ Form::remotecombo("id_pcustomer",$record->id_pcustomer,["table"=>$model,"class" => "form-control","placeholder"=>"Customer"] ); }}
+    
+ <span class="help-block">{{ $errors->first('id_pcustomer') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('id_awb')) has-error @endif">
+
+ {{ Form::label("remotecombo", "Awb") }}
+   
+      {{ Form::remotecombo("id_awb",$record->id_awb,["table"=>$model,"class" => "form-control","placeholder"=>"Awb"] ); }}
+    
+ <span class="help-block">{{ $errors->first('id_awb') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('id_manifest')) has-error @endif">
+
+ {{ Form::label("remotecombo", "Manifest") }}
+   
+      {{ Form::remotecombo("id_manifest",$record->id_manifest,["table"=>$model,"class" => "form-control","placeholder"=>"Manifest"] ); }}
+    
+ <span class="help-block">{{ $errors->first('id_manifest') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('id_agency')) has-error @endif">
+
+ {{ Form::label("remotecombo", "Agency") }}
+   
+      {{ Form::remotecombo("id_agency",$record->id_agency,["table"=>$model,"class" => "form-control","placeholder"=>"Agency"] ); }}
+    
+ <span class="help-block">{{ $errors->first('id_agency') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('sender')) has-error @endif">
+
+ {{ Form::label("text", "Sender") }}
+   
+      {{ Form::text("sender",$record->sender,["class" => "form-control","placeholder"=>"Sender"]); }}
+    
+ <span class="help-block">{{ $errors->first('sender') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('consignee')) has-error @endif">
+
+ {{ Form::label("text", "Consignee") }}
+   
+      {{ Form::text("consignee",$record->consignee,["class" => "form-control","placeholder"=>"Consignee"]); }}
+    
+ <span class="help-block">{{ $errors->first('consignee') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('driver')) has-error @endif">
+
+ {{ Form::label("text", "Driver") }}
+   
+      {{ Form::text("driver",$record->driver,["class" => "form-control","placeholder"=>"Driver"]); }}
+    
+ <span class="help-block">{{ $errors->first('driver') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('driverid')) has-error @endif">
+
+ {{ Form::label("text", "Driver ID") }}
+   
+      {{ Form::text("driverid",$record->driverid,["class" => "form-control","placeholder"=>"Driver ID"]); }}
+    
+ <span class="help-block">{{ $errors->first('driverid') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('description')) has-error @endif">
+
+ {{ Form::label("textarea", "Description") }}
+   
+      {{ Form::textarea("description", $record->description,["class" => "form-control","placeholder"=>"Description"]) }}
+    
+ <span class="help-block">{{ $errors->first('description') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('comments')) has-error @endif">
+
+ {{ Form::label("textarea", "Comments") }}
+   
+      {{ Form::textarea("comments", $record->comments,["class" => "form-control","placeholder"=>"Comments"]) }}
+    
+ <span class="help-block">{{ $errors->first('comments') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('invoice_value')) has-error @endif">
+
+ {{ Form::label("text", "Invoice value") }}
+   
+      {{ Form::text("invoice_value",$record->invoice_value,["class" => "form-control","placeholder"=>"Invoice value"]); }}
+    
+ <span class="help-block">{{ $errors->first('invoice_value') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('shipment_commodity')) has-error @endif">
+
+ {{ Form::label("text", "Shipment commodity") }}
+   
+      {{ Form::text("shipment_commodity",$record->shipment_commodity,["class" => "form-control","placeholder"=>"Shipment commodity"]); }}
+    
+ <span class="help-block">{{ $errors->first('shipment_commodity') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('pieces')) has-error @endif">
+
+ {{ Form::label("number", "Pieces") }}
+   
+      {{ Form::number("pieces",$record->pieces,["class" => "form-control","placeholder"=>"Pieces"]); }}
+    
+ <span class="help-block">{{ $errors->first('pieces') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('tact_weight')) has-error @endif">
+
+ {{ Form::label("text", "Tact weight") }}
+   
+      {{ Form::text("tact_weight",$record->tact_weight,["class" => "form-control","placeholder"=>"Tact weight"]); }}
+    
+ <span class="help-block">{{ $errors->first('tact_weight') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('tvol_weight')) has-error @endif">
+
+ {{ Form::label("text", "Tvol weight") }}
+   
+      {{ Form::text("tvol_weight",$record->tvol_weight,["class" => "form-control","placeholder"=>"Tvol weight"]); }}
+    
+ <span class="help-block">{{ $errors->first('tvol_weight') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('tchg_weight')) has-error @endif">
+
+ {{ Form::label("text", "Tchg weight") }}
+   
+      {{ Form::text("tchg_weight",$record->tchg_weight,["class" => "form-control","placeholder"=>"Tchg weight"]); }}
+    
+ <span class="help-block">{{ $errors->first('tchg_weight') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('w_unit')) has-error @endif">
+
+ {{ Form::label("radiogroup", "W unit") }}
+   
+      {{ Form::radiogroup("w_unit",$record->w_unit,[],$columns->w_unit->data); }}
+    
+ <span class="help-block">{{ $errors->first('w_unit') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('info')) has-error @endif">
+
+ {{ Form::label("text", "Info") }}
+   
+      {{ Form::text("info",$record->info,["class" => "form-control","placeholder"=>"Info"]); }}
+    
+ <span class="help-block">{{ $errors->first('info') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('status')) has-error @endif">
+
+ {{ Form::label("radiogroup", "Status") }}
+   
+      {{ Form::radiogroup("status",$record->status,[],$columns->status->data); }}
+    
+ <span class="help-block">{{ $errors->first('status') }}</span>
+</div>
+
+     
+
+@stop
+
+

@@ -1,0 +1,411 @@
+@extends("crud.layout-show")
+
+@section("form")
+
+	
+	
+<div class="row">
+	<div class="col-xs-2 text-right bg-primary h4">
+		{{ Form::label($columns->id_awb->input, $columns->id_awb->label) }}
+	</div>
+	<div class="col-xs-10 h4">
+		{{ parseToHTML($columns->id_awb,$record,$fk_column) }}
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-2 text-right ">
+		{{ Form::label($columns->customerref->input, $columns->customerref->label) }}
+	</div>
+	<div class="col-xs-10 ">
+		{{ parseToHTML($columns->customerref,$record,$fk_column) }}
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-2 text-right ">
+		{{ Form::label($columns->date->input, $columns->date->label) }}
+	</div>
+	<div class="col-xs-10 ">
+		{{ parseToHTML($columns->date,$record,$fk_column) }}
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-2 text-right ">
+		{{ Form::label($columns->origin->input, $columns->origin->label) }}
+	</div>
+	<div class="col-xs-10 ">
+		{{ parseToHTML($columns->origin,$record,$fk_column) }}
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-2 text-right ">
+		{{ Form::label($columns->destination->input, $columns->destination->label) }}
+	</div>
+	<div class="col-xs-10 ">
+		{{ parseToHTML($columns->destination,$record,$fk_column) }}
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-2 text-right ">
+		{{ Form::label($columns->pieces->input, $columns->pieces->label) }}
+	</div>
+	<div class="col-xs-10 ">
+		{{ parseToHTML($columns->pieces,$record,$fk_column) }}
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-2 text-right ">
+		{{ Form::label($columns->weight->input, $columns->weight->label) }}
+	</div>
+	<div class="col-xs-10 ">
+		{{ parseToHTML($columns->weight,$record,$fk_column) }}
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-2 text-right ">
+		{{ Form::label($columns->unit->input, $columns->unit->label) }}
+	</div>
+	<div class="col-xs-10 ">
+		{{ parseToHTML($columns->unit,$record,$fk_column) }}
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-2 text-right ">
+		{{ Form::label($columns->size_l->input, $columns->size_l->label) }}
+	</div>
+	<div class="col-xs-10 ">
+		{{ parseToHTML($columns->size_l,$record,$fk_column) }}
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-2 text-right ">
+		{{ Form::label($columns->size_h->input, $columns->size_h->label) }}
+	</div>
+	<div class="col-xs-10 ">
+		{{ parseToHTML($columns->size_h,$record,$fk_column) }}
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-2 text-right ">
+		{{ Form::label($columns->size_w->input, $columns->size_w->label) }}
+	</div>
+	<div class="col-xs-10 ">
+		{{ parseToHTML($columns->size_w,$record,$fk_column) }}
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-2 text-right ">
+		{{ Form::label($columns->size_unit->input, $columns->size_unit->label) }}
+	</div>
+	<div class="col-xs-10 ">
+		{{ parseToHTML($columns->size_unit,$record,$fk_column) }}
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-2 text-right ">
+		{{ Form::label($columns->volweight->input, $columns->volweight->label) }}
+	</div>
+	<div class="col-xs-10 ">
+		{{ parseToHTML($columns->volweight,$record,$fk_column) }}
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-2 text-right ">
+		{{ Form::label($columns->chgweight->input, $columns->chgweight->label) }}
+	</div>
+	<div class="col-xs-10 ">
+		{{ parseToHTML($columns->chgweight,$record,$fk_column) }}
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-2 text-right ">
+		{{ Form::label($columns->description->input, $columns->description->label) }}
+	</div>
+	<div class="col-xs-10 ">
+		{{ parseToHTML($columns->description,$record,$fk_column) }}
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-2 text-right ">
+		{{ Form::label($columns->declaredvalue->input, $columns->declaredvalue->label) }}
+	</div>
+	<div class="col-xs-10 ">
+		{{ parseToHTML($columns->declaredvalue,$record,$fk_column) }}
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-2 text-right ">
+		{{ Form::label($columns->type->input, $columns->type->label) }}
+	</div>
+	<div class="col-xs-10 ">
+		{{ parseToHTML($columns->type,$record,$fk_column) }}
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-2 text-right ">
+		{{ Form::label($columns->dest_serv->input, $columns->dest_serv->label) }}
+	</div>
+	<div class="col-xs-10 ">
+		{{ parseToHTML($columns->dest_serv,$record,$fk_column) }}
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-2 text-right ">
+		{{ Form::label($columns->info->input, $columns->info->label) }}
+	</div>
+	<div class="col-xs-10 ">
+		{{ parseToHTML($columns->info,$record,$fk_column) }}
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-2 text-right ">
+		{{ Form::label($columns->paymethod->input, $columns->paymethod->label) }}
+	</div>
+	<div class="col-xs-10 ">
+		{{ parseToHTML($columns->paymethod,$record,$fk_column) }}
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-2 text-right ">
+		{{ Form::label($columns->service_type->input, $columns->service_type->label) }}
+	</div>
+	<div class="col-xs-10 ">
+		{{ parseToHTML($columns->service_type,$record,$fk_column) }}
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-2 text-right ">
+		{{ Form::label($columns->id_rates->input, $columns->id_rates->label) }}
+	</div>
+	<div class="col-xs-10 ">
+		{{ parseToHTML($columns->id_rates,$record,$fk_column) }}
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-2 text-right ">
+		{{ Form::label($columns->shipping_charges->input, $columns->shipping_charges->label) }}
+	</div>
+	<div class="col-xs-10 ">
+		{{ parseToHTML($columns->shipping_charges,$record,$fk_column) }}
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-2 text-right ">
+		{{ Form::label($columns->from_id_customer->input, $columns->from_id_customer->label) }}
+	</div>
+	<div class="col-xs-10 ">
+		{{ parseToHTML($columns->from_id_customer,$record,$fk_column) }}
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-2 text-right ">
+		{{ Form::label($columns->from_name->input, $columns->from_name->label) }}
+	</div>
+	<div class="col-xs-10 ">
+		{{ parseToHTML($columns->from_name,$record,$fk_column) }}
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-2 text-right ">
+		{{ Form::label($columns->from_address->input, $columns->from_address->label) }}
+	</div>
+	<div class="col-xs-10 ">
+		{{ parseToHTML($columns->from_address,$record,$fk_column) }}
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-2 text-right ">
+		{{ Form::label($columns->from_city->input, $columns->from_city->label) }}
+	</div>
+	<div class="col-xs-10 ">
+		{{ parseToHTML($columns->from_city,$record,$fk_column) }}
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-2 text-right ">
+		{{ Form::label($columns->from_state->input, $columns->from_state->label) }}
+	</div>
+	<div class="col-xs-10 ">
+		{{ parseToHTML($columns->from_state,$record,$fk_column) }}
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-2 text-right ">
+		{{ Form::label($columns->from_zip->input, $columns->from_zip->label) }}
+	</div>
+	<div class="col-xs-10 ">
+		{{ parseToHTML($columns->from_zip,$record,$fk_column) }}
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-2 text-right ">
+		{{ Form::label($columns->from_country->input, $columns->from_country->label) }}
+	</div>
+	<div class="col-xs-10 ">
+		{{ parseToHTML($columns->from_country,$record,$fk_column) }}
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-2 text-right ">
+		{{ Form::label($columns->from_phone->input, $columns->from_phone->label) }}
+	</div>
+	<div class="col-xs-10 ">
+		{{ parseToHTML($columns->from_phone,$record,$fk_column) }}
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-2 text-right ">
+		{{ Form::label($columns->from_email->input, $columns->from_email->label) }}
+	</div>
+	<div class="col-xs-10 ">
+		{{ parseToHTML($columns->from_email,$record,$fk_column) }}
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-2 text-right ">
+		{{ Form::label($columns->to_id_customer->input, $columns->to_id_customer->label) }}
+	</div>
+	<div class="col-xs-10 ">
+		{{ parseToHTML($columns->to_id_customer,$record,$fk_column) }}
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-2 text-right ">
+		{{ Form::label($columns->to_name->input, $columns->to_name->label) }}
+	</div>
+	<div class="col-xs-10 ">
+		{{ parseToHTML($columns->to_name,$record,$fk_column) }}
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-2 text-right ">
+		{{ Form::label($columns->to_address->input, $columns->to_address->label) }}
+	</div>
+	<div class="col-xs-10 ">
+		{{ parseToHTML($columns->to_address,$record,$fk_column) }}
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-2 text-right ">
+		{{ Form::label($columns->to_city->input, $columns->to_city->label) }}
+	</div>
+	<div class="col-xs-10 ">
+		{{ parseToHTML($columns->to_city,$record,$fk_column) }}
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-2 text-right ">
+		{{ Form::label($columns->to_state->input, $columns->to_state->label) }}
+	</div>
+	<div class="col-xs-10 ">
+		{{ parseToHTML($columns->to_state,$record,$fk_column) }}
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-2 text-right ">
+		{{ Form::label($columns->to_zip->input, $columns->to_zip->label) }}
+	</div>
+	<div class="col-xs-10 ">
+		{{ parseToHTML($columns->to_zip,$record,$fk_column) }}
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-2 text-right ">
+		{{ Form::label($columns->to_country->input, $columns->to_country->label) }}
+	</div>
+	<div class="col-xs-10 ">
+		{{ parseToHTML($columns->to_country,$record,$fk_column) }}
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-2 text-right ">
+		{{ Form::label($columns->to_phone->input, $columns->to_phone->label) }}
+	</div>
+	<div class="col-xs-10 ">
+		{{ parseToHTML($columns->to_phone,$record,$fk_column) }}
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-2 text-right ">
+		{{ Form::label($columns->to_email->input, $columns->to_email->label) }}
+	</div>
+	<div class="col-xs-10 ">
+		{{ parseToHTML($columns->to_email,$record,$fk_column) }}
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-2 text-right ">
+		{{ Form::label($columns->awb_notes->input, $columns->awb_notes->label) }}
+	</div>
+	<div class="col-xs-10 ">
+		{{ parseToHTML($columns->awb_notes,$record,$fk_column) }}
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-2 text-right ">
+		{{ Form::label($columns->awb_claims->input, $columns->awb_claims->label) }}
+	</div>
+	<div class="col-xs-10 ">
+		{{ parseToHTML($columns->awb_claims,$record,$fk_column) }}
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-2 text-right ">
+		{{ Form::label($columns->claim_status->input, $columns->claim_status->label) }}
+	</div>
+	<div class="col-xs-10 ">
+		{{ parseToHTML($columns->claim_status,$record,$fk_column) }}
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-2 text-right ">
+		{{ Form::label($columns->created_by->input, $columns->created_by->label) }}
+	</div>
+	<div class="col-xs-10 ">
+		{{ parseToHTML($columns->created_by,$record,$fk_column) }}
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-2 text-right ">
+		{{ Form::label($columns->updated_by->input, $columns->updated_by->label) }}
+	</div>
+	<div class="col-xs-10 ">
+		{{ parseToHTML($columns->updated_by,$record,$fk_column) }}
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-2 text-right ">
+		{{ Form::label($columns->created_at->input, $columns->created_at->label) }}
+	</div>
+	<div class="col-xs-10 ">
+		{{ parseToHTML($columns->created_at,$record,$fk_column) }}
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-2 text-right ">
+		{{ Form::label($columns->updated_at->input, $columns->updated_at->label) }}
+	</div>
+	<div class="col-xs-10 ">
+		{{ parseToHTML($columns->updated_at,$record,$fk_column) }}
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-2 text-right ">
+		{{ Form::label($columns->deleted_by->input, $columns->deleted_by->label) }}
+	</div>
+	<div class="col-xs-10 ">
+		{{ parseToHTML($columns->deleted_by,$record,$fk_column) }}
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-2 text-right ">
+		{{ Form::label($columns->deleted_at->input, $columns->deleted_at->label) }}
+	</div>
+	<div class="col-xs-10 ">
+		{{ parseToHTML($columns->deleted_at,$record,$fk_column) }}
+	</div>
+</div>
+
+@stop
+
+
+

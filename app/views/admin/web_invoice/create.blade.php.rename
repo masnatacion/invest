@@ -1,0 +1,128 @@
+@extends("crud.layout-form")
+
+@section("form")
+
+
+
+<div class="form-group @if ($errors->has('id_invoice_items')) has-error @endif">
+
+ {{ Form::label("remotecombo", "Invoice_item") }}
+   
+      {{ Form::remotecombo("id_invoice_items",$record->id_invoice_items,["table"=>$model,"class" => "form-control","placeholder"=>"Invoice_item"] ); }}
+    
+ <span class="help-block">{{ $errors->first('id_invoice_items') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('uniquekey')) has-error @endif">
+
+ {{ Form::label("text", "Uniquekey") }}
+   
+      {{ Form::text("uniquekey",$record->uniquekey,["class" => "form-control","placeholder"=>"Uniquekey"]); }}
+    
+ <span class="help-block">{{ $errors->first('uniquekey') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('email_address')) has-error @endif">
+
+ {{ Form::label("email", "Email address") }}
+   
+      {{ Form::email("email_address",$record->email_address,["class" => "form-control","placeholder"=>"Email address"]); }}
+    
+ <span class="help-block">{{ $errors->first('email_address') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('shipper')) has-error @endif">
+
+ {{ Form::label("text", "Shipper") }}
+   
+      {{ Form::text("shipper",$record->shipper,["class" => "form-control","placeholder"=>"Shipper"]); }}
+    
+ <span class="help-block">{{ $errors->first('shipper') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('consignee')) has-error @endif">
+
+ {{ Form::label("text", "Consignee") }}
+   
+      {{ Form::text("consignee",$record->consignee,["class" => "form-control","placeholder"=>"Consignee"]); }}
+    
+ <span class="help-block">{{ $errors->first('consignee') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('box')) has-error @endif">
+
+ {{ Form::label("text", "Box") }}
+   
+      {{ Form::text("box",$record->box,["class" => "form-control","placeholder"=>"Box"]); }}
+    
+ <span class="help-block">{{ $errors->first('box') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('invoice')) has-error @endif">
+
+ {{ Form::label("text", "Invoice") }}
+   
+      {{ Form::text("invoice",$record->invoice,["class" => "form-control","placeholder"=>"Invoice"]); }}
+    
+ <span class="help-block">{{ $errors->first('invoice') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('invoice_type')) has-error @endif">
+
+ {{ Form::label("radiogroup", "Invoice type") }}
+   
+      {{ Form::radiogroup("invoice_type",$record->invoice_type,[],$columns->invoice_type->data); }}
+    
+ <span class="help-block">{{ $errors->first('invoice_type') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('expected_fax_date')) has-error @endif">
+
+ {{ Form::label("date", "Expected fax date") }}
+   
+      {{ Form::date("expected_fax_date",$record->expected_fax_date,["class"=>"form-control","placeholder"=>"Expected fax date"]) }}
+    
+ <span class="help-block">{{ $errors->first('expected_fax_date') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('notes')) has-error @endif">
+
+ {{ Form::label("textarea", "Notes") }}
+   
+      {{ Form::textarea("notes", $record->notes,["class" => "form-control","placeholder"=>"Notes"]) }}
+    
+ <span class="help-block">{{ $errors->first('notes') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('date')) has-error @endif">
+
+ {{ Form::label("date", "Date") }}
+   
+      {{ Form::date("date",$record->date,["class"=>"form-control","placeholder"=>"Date"]) }}
+    
+ <span class="help-block">{{ $errors->first('date') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('flag')) has-error @endif">
+
+ {{ Form::label("radiogroup", "Flag") }}
+   
+      {{ Form::radiogroup("flag",$record->flag,[],$columns->flag->data); }}
+    
+ <span class="help-block">{{ $errors->first('flag') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('status')) has-error @endif">
+
+ {{ Form::label("radiogroup", "Status") }}
+   
+      {{ Form::radiogroup("status",$record->status,[],$columns->status->data); }}
+    
+ <span class="help-block">{{ $errors->first('status') }}</span>
+</div>
+
+     
+
+@stop
+
+

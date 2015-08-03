@@ -1,0 +1,155 @@
+@extends("crud.layout-form")
+
+@section("form")
+
+
+
+<div class="form-group @if ($errors->has('uniquekey')) has-error @endif">
+
+ {{ Form::label("text", "Uniquekey") }}
+   
+      {{ Form::text("uniquekey",$record->uniquekey,["class" => "form-control","placeholder"=>"Uniquekey"]); }}
+    
+ <span class="help-block">{{ $errors->first('uniquekey') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('position')) has-error @endif">
+
+ {{ Form::label("text", "Position") }}
+   
+      {{ Form::text("position",$record->position,["class" => "form-control","placeholder"=>"Position"]); }}
+    
+ <span class="help-block">{{ $errors->first('position') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('name')) has-error @endif">
+
+ {{ Form::label("text", "Name") }}
+   
+      {{ Form::text("name",$record->name,["class" => "form-control","placeholder"=>"Name"]); }}
+    
+ <span class="help-block">{{ $errors->first('name') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('email')) has-error @endif">
+
+ {{ Form::label("email", "Email") }}
+   
+      {{ Form::email("email",$record->email,["class" => "form-control","placeholder"=>"Email"]); }}
+    
+ <span class="help-block">{{ $errors->first('email') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('address1')) has-error @endif">
+
+ {{ Form::label("text", "Address1") }}
+   
+      {{ Form::text("address1",$record->address1,["class" => "form-control","placeholder"=>"Address1"]); }}
+    
+ <span class="help-block">{{ $errors->first('address1') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('address2')) has-error @endif">
+
+ {{ Form::label("text", "Address2") }}
+   
+      {{ Form::text("address2",$record->address2,["class" => "form-control","placeholder"=>"Address2"]); }}
+    
+ <span class="help-block">{{ $errors->first('address2') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('city')) has-error @endif">
+
+ {{ Form::label("text", "City") }}
+   
+      {{ Form::text("city",$record->city,["class" => "form-control","placeholder"=>"City"]); }}
+    
+ <span class="help-block">{{ $errors->first('city') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('zip')) has-error @endif">
+
+ {{ Form::label("text", "Zip") }}
+   
+      {{ Form::text("zip",$record->zip,["class" => "form-control","placeholder"=>"Zip"]); }}
+    
+ <span class="help-block">{{ $errors->first('zip') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('country')) has-error @endif">
+
+ {{ Form::label("text", "Country") }}
+   
+      {{ Form::text("country",$record->country,["class" => "form-control","placeholder"=>"Country"]); }}
+    
+ <span class="help-block">{{ $errors->first('country') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('cv')) has-error @endif">
+
+ {{ Form::label("textarea", "Cv") }}
+   
+      {{ Form::textarea("cv", $record->cv,["class" => "form-control","placeholder"=>"Cv"]) }}
+    
+ <span class="help-block">{{ $errors->first('cv') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('education')) has-error @endif">
+
+ {{ Form::label("text", "Education") }}
+   
+      {{ Form::text("education",$record->education,["class" => "form-control","placeholder"=>"Education"]); }}
+    
+ <span class="help-block">{{ $errors->first('education') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('degree')) has-error @endif">
+
+ {{ Form::label("text", "Degree") }}
+   
+      {{ Form::text("degree",$record->degree,["class" => "form-control","placeholder"=>"Degree"]); }}
+    
+ <span class="help-block">{{ $errors->first('degree') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('graduation_year')) has-error @endif">
+
+ {{ Form::label("text", "Graduation year") }}
+   
+      {{ Form::text("graduation_year",$record->graduation_year,["class" => "form-control","placeholder"=>"Graduation year"]); }}
+    
+ <span class="help-block">{{ $errors->first('graduation_year') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('salary')) has-error @endif">
+
+ {{ Form::label("text", "Salary") }}
+   
+      {{ Form::text("salary",$record->salary,["class" => "form-control","placeholder"=>"Salary"]); }}
+    
+ <span class="help-block">{{ $errors->first('salary') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('flag')) has-error @endif">
+
+ {{ Form::label("radiogroup", "Flag") }}
+   
+      {{ Form::radiogroup("flag",$record->flag,[],$columns->flag->data); }}
+    
+ <span class="help-block">{{ $errors->first('flag') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('status')) has-error @endif">
+
+ {{ Form::label("radiogroup", "Status") }}
+   
+      {{ Form::radiogroup("status",$record->status,[],$columns->status->data); }}
+    
+ <span class="help-block">{{ $errors->first('status') }}</span>
+</div>
+
+     
+
+@stop
+
+

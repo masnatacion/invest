@@ -1,0 +1,83 @@
+@extends("crud.layout-form")
+
+@section("form")
+
+
+
+<div class="form-group @if ($errors->has('id_cmb_nf_lost')) has-error @endif">
+
+ {{ Form::label("remotecombo", "Cmb_nf_lost") }}
+   
+      {{ Form::remotecombo("id_cmb_nf_lost",$record->id_cmb_nf_lost,["table"=>$model,"class" => "form-control","placeholder"=>"Cmb_nf_lost"] ); }}
+    
+ <span class="help-block">{{ $errors->first('id_cmb_nf_lost') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('shipper_name')) has-error @endif">
+
+ {{ Form::label("text", "Shipper name") }}
+   
+      {{ Form::text("shipper_name",$record->shipper_name,["class" => "form-control","placeholder"=>"Shipper name"]); }}
+    
+ <span class="help-block">{{ $errors->first('shipper_name') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('consignee')) has-error @endif">
+
+ {{ Form::label("text", "Consignee") }}
+   
+      {{ Form::text("consignee",$record->consignee,["class" => "form-control","placeholder"=>"Consignee"]); }}
+    
+ <span class="help-block">{{ $errors->first('consignee') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('carrier')) has-error @endif">
+
+ {{ Form::label("radiogroup", "Carrier") }}
+   
+      {{ Form::radiogroup("carrier",$record->carrier,[],$columns->carrier->data); }}
+    
+ <span class="help-block">{{ $errors->first('carrier') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('tracking')) has-error @endif">
+
+ {{ Form::label("text", "Tracking") }}
+   
+      {{ Form::text("tracking",$record->tracking,["class" => "form-control","placeholder"=>"Tracking"]); }}
+    
+ <span class="help-block">{{ $errors->first('tracking') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('pieces')) has-error @endif">
+
+ {{ Form::label("number", "Pieces") }}
+   
+      {{ Form::number("pieces",$record->pieces,["class" => "form-control","placeholder"=>"Pieces"]); }}
+    
+ <span class="help-block">{{ $errors->first('pieces') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('comments')) has-error @endif">
+
+ {{ Form::label("editor", "Comments") }}
+   
+      {{ Form::editor("comments",$record->comments,[]); }}
+    
+ <span class="help-block">{{ $errors->first('comments') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('status')) has-error @endif">
+
+ {{ Form::label("radiogroup", "Status") }}
+   
+      {{ Form::radiogroup("status",$record->status,[],$columns->status->data); }}
+    
+ <span class="help-block">{{ $errors->first('status') }}</span>
+</div>
+
+     
+
+@stop
+
+

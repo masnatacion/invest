@@ -1,0 +1,92 @@
+@extends("crud.layout-form")
+
+@section("form")
+
+
+
+<div class="form-group @if ($errors->has('id_lost_items')) has-error @endif">
+
+ {{ Form::label("remotecombo", "Lost_item") }}
+   
+      {{ Form::remotecombo("id_lost_items",$record->id_lost_items,["table"=>$model,"class" => "form-control","placeholder"=>"Lost_item"] ); }}
+    
+ <span class="help-block">{{ $errors->first('id_lost_items') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('name')) has-error @endif">
+
+ {{ Form::label("text", "Name") }}
+   
+      {{ Form::text("name",$record->name,["class" => "form-control","placeholder"=>"Name"]); }}
+    
+ <span class="help-block">{{ $errors->first('name') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('phone')) has-error @endif">
+
+ {{ Form::label("text", "Phone") }}
+   
+      {{ Form::text("phone",$record->phone,["class" => "form-control","placeholder"=>"Phone"]); }}
+    
+ <span class="help-block">{{ $errors->first('phone') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('address')) has-error @endif">
+
+ {{ Form::label("textarea", "Address") }}
+   
+      {{ Form::textarea("address", $record->address,["class" => "form-control","placeholder"=>"Address"]) }}
+    
+ <span class="help-block">{{ $errors->first('address') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('email')) has-error @endif">
+
+ {{ Form::label("email", "Email") }}
+   
+      {{ Form::email("email",$record->email,["class" => "form-control","placeholder"=>"Email"]); }}
+    
+ <span class="help-block">{{ $errors->first('email') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('comments')) has-error @endif">
+
+ {{ Form::label("textarea", "Comments") }}
+   
+      {{ Form::textarea("comments", $record->comments,["class" => "form-control","placeholder"=>"Comments"]) }}
+    
+ <span class="help-block">{{ $errors->first('comments') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('date')) has-error @endif">
+
+ {{ Form::label("date", "Date") }}
+   
+      {{ Form::date("date",$record->date,["class"=>"form-control","placeholder"=>"Date"]) }}
+    
+ <span class="help-block">{{ $errors->first('date') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('flag')) has-error @endif">
+
+ {{ Form::label("radiogroup", "Flag") }}
+   
+      {{ Form::radiogroup("flag",$record->flag,[],$columns->flag->data); }}
+    
+ <span class="help-block">{{ $errors->first('flag') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('status')) has-error @endif">
+
+ {{ Form::label("radiogroup", "Status") }}
+   
+      {{ Form::radiogroup("status",$record->status,[],$columns->status->data); }}
+    
+ <span class="help-block">{{ $errors->first('status') }}</span>
+</div>
+
+     
+
+@stop
+
+

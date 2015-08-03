@@ -1,0 +1,49 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+
+class CreatePoboxItemsTable extends Migration {
+
+	/**
+	 * Run the migrations.
+	 *
+	 * @return void
+	 */
+	public function up()
+	{
+		Schema::create('pobox_items', function(Blueprint $table)
+		{
+			$table->increments('id_pobox_items');
+			$table->integer('id_pobox')->index('id_pobox');
+			$table->text('item_description');
+			$table->enum('carrier_name', array('UPS','FEDEX','USPS','DHL','LASER SHIP','Others','TNT'))->nullable();
+			$table->string('Tracking', 40)->nullable();
+			$table->decimal('weight', 9, 3);
+			$table->enum('wunit', array('Lb','Oz','Kg','Gr'));
+			$table->decimal('size_width', 6, 3);
+			$table->decimal('size_height', 6, 3);
+			$table->decimal('size_length', 6, 3);
+			$table->enum('munit', array('mm','cm','mt','in','ft'));
+			$table->decimal('vol_weight', 9, 3);
+			$table->decimal('chg_weight', 9, 3);
+			$table->decimal('declared_value', 6);
+			$table->string('location', 60);
+			$table->integer('created_by');
+			$table->integer('updated_by')->nullable();
+			$table->timestamps();
+		});
+	}
+
+
+	/**
+	 * Reverse the migrations.
+	 *
+	 * @return void
+	 */
+	public function down()
+	{
+		Schema::drop('pobox_items');
+	}
+
+}

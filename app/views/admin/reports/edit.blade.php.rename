@@ -1,0 +1,155 @@
+@extends("crud.layout-form")
+
+@section("form")
+
+
+
+<div class="form-group @if ($errors->has('id_agency')) has-error @endif">
+
+ {{ Form::label("remotecombo", "Agency") }}
+   
+      {{ Form::remotecombo("id_agency",$record->id_agency,["table"=>$model,"class" => "form-control","placeholder"=>"Agency"] ); }}
+    
+ <span class="help-block">{{ $errors->first('id_agency') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('report_name')) has-error @endif">
+
+ {{ Form::label("text", "Report name") }}
+   
+      {{ Form::text("report_name",$record->report_name,["class" => "form-control","placeholder"=>"Report name"]); }}
+    
+ <span class="help-block">{{ $errors->first('report_name') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('query_from')) has-error @endif">
+
+ {{ Form::label("textarea", "Query from") }}
+   
+      {{ Form::textarea("query_from", $record->query_from,["class" => "form-control","placeholder"=>"Query from"]) }}
+    
+ <span class="help-block">{{ $errors->first('query_from') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('query_join')) has-error @endif">
+
+ {{ Form::label("textarea", "Query join") }}
+   
+      {{ Form::textarea("query_join", $record->query_join,["class" => "form-control","placeholder"=>"Query join"]) }}
+    
+ <span class="help-block">{{ $errors->first('query_join') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('query_where')) has-error @endif">
+
+ {{ Form::label("textarea", "Query where") }}
+   
+      {{ Form::textarea("query_where", $record->query_where,["class" => "form-control","placeholder"=>"Query where"]) }}
+    
+ <span class="help-block">{{ $errors->first('query_where') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('query_group_by')) has-error @endif">
+
+ {{ Form::label("textarea", "Query group by") }}
+   
+      {{ Form::textarea("query_group_by", $record->query_group_by,["class" => "form-control","placeholder"=>"Query group by"]) }}
+    
+ <span class="help-block">{{ $errors->first('query_group_by') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('query_order_by')) has-error @endif">
+
+ {{ Form::label("textarea", "Query order by") }}
+   
+      {{ Form::textarea("query_order_by", $record->query_order_by,["class" => "form-control","placeholder"=>"Query order by"]) }}
+    
+ <span class="help-block">{{ $errors->first('query_order_by') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('filename')) has-error @endif">
+
+ {{ Form::label("text", "Filename") }}
+   
+      {{ Form::text("filename",$record->filename,["class" => "form-control","placeholder"=>"Filename"]); }}
+    
+ <span class="help-block">{{ $errors->first('filename') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('export_file')) has-error @endif">
+
+ {{ Form::label("text", "Export file") }}
+   
+      {{ Form::text("export_file",$record->export_file,["class" => "form-control","placeholder"=>"Export file"]); }}
+    
+ <span class="help-block">{{ $errors->first('export_file') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('pre_filter_by')) has-error @endif">
+
+ {{ Form::label("textarea", "Pre filter by") }}
+   
+      {{ Form::textarea("pre_filter_by", $record->pre_filter_by,["class" => "form-control","placeholder"=>"Pre filter by"]) }}
+    
+ <span class="help-block">{{ $errors->first('pre_filter_by') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('notes')) has-error @endif">
+
+ {{ Form::label("textarea", "Notes") }}
+   
+      {{ Form::textarea("notes", $record->notes,["class" => "form-control","placeholder"=>"Notes"]) }}
+    
+ <span class="help-block">{{ $errors->first('notes') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('print_position')) has-error @endif">
+
+ {{ Form::label("radiogroup", "Print position") }}
+   
+      {{ Form::radiogroup("print_position",$record->print_position,[],$columns->print_position->data); }}
+    
+ <span class="help-block">{{ $errors->first('print_position') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('page_length')) has-error @endif">
+
+ {{ Form::label("number", "Page length") }}
+   
+      {{ Form::number("page_length",$record->page_length,["class" => "form-control","placeholder"=>"Page length"]); }}
+    
+ <span class="help-block">{{ $errors->first('page_length') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('custom_var1')) has-error @endif">
+
+ {{ Form::label("textarea", "Custom var1") }}
+   
+      {{ Form::textarea("custom_var1", $record->custom_var1,["class" => "form-control","placeholder"=>"Custom var1"]) }}
+    
+ <span class="help-block">{{ $errors->first('custom_var1') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('custom_var2')) has-error @endif">
+
+ {{ Form::label("textarea", "Custom var2") }}
+   
+      {{ Form::textarea("custom_var2", $record->custom_var2,["class" => "form-control","placeholder"=>"Custom var2"]) }}
+    
+ <span class="help-block">{{ $errors->first('custom_var2') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('custom_var3')) has-error @endif">
+
+ {{ Form::label("textarea", "Custom var3") }}
+   
+      {{ Form::textarea("custom_var3", $record->custom_var3,["class" => "form-control","placeholder"=>"Custom var3"]) }}
+    
+ <span class="help-block">{{ $errors->first('custom_var3') }}</span>
+</div>
+
+     
+
+@stop
+
+

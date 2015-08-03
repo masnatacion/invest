@@ -1,0 +1,44 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+
+class CreateWebContactusTable extends Migration {
+
+	/**
+	 * Run the migrations.
+	 *
+	 * @return void
+	 */
+	public function up()
+	{
+		Schema::create('web_contactus', function(Blueprint $table)
+		{
+			$table->increments('id_web_contactus');
+			$table->string('uniquekey', 40);
+			$table->string('customer_name', 60);
+			$table->integer('cmb_num');
+			$table->string('customer_emails', 90);
+			$table->string('subject', 90);
+			$table->text('message');
+			$table->enum('Status', array('New','Open','Closed Successfully','Closed Unsuccessfully',''));
+			$table->integer('created_by');
+			$table->integer('updated_by')->nullable();
+			$table->timestamps();
+			$table->integer('deleted_by')->nullable();
+			$table->softDeletes();
+		});
+	}
+
+
+	/**
+	 * Reverse the migrations.
+	 *
+	 * @return void
+	 */
+	public function down()
+	{
+		Schema::drop('web_contactus');
+	}
+
+}

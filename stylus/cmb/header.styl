@@ -1,0 +1,90 @@
+.header-customer
+	.my-profile
+		background-color: transparent !important;
+		background-image: none !important;
+	.balance
+		a
+			padding: 0.5em;
+		p
+			font-size 1.5em
+		color white
+	position relative
+	z-index 2
+	position: fixed;
+	width: 100%;
+	.profile-img-card
+		width: 2em;
+		height: 2em;
+		margin-right: .2em;
+		border-radius: 50%;
+		
+	.navbar-brand
+		background: url("../img/logo-tablet.png");
+		height: 10.4em;
+		width: 12.9em;
+		position: absolute;
+		z-index: 1;
+		top: 1em;
+	.toolbar-social
+		height: 5em;
+		background black
+	.navbar-green
+		border-top .5em solid #7ebf1b
+		border-bottom: .5em solid #f2d474;
+	.navbar-collapse
+		margin-left 12em
+	.toolbar-social	
+		.form-inline
+			margin-top: 1.5em;	
+			.input-group	
+				width: 100%;
+			.input-group-addon
+				background: #525252;
+				color: white;
+				border: 0px;
+				border-radius: 0;
+				top: 0;
+			.form-control
+				border-radius: 0;	
+		.social
+			margin-top .8em
+			li 
+				border 1px solid #5c5c5c
+				font-size: 1.3em;
+				padding: .4em;
+				margin-right: .2em;
+			.icon-facebook
+				color white
+				background #0173b2
+			.icon-twitter
+				color white
+				background #00acee
+			.icon-google
+				color white
+				background #ff0000
+			.icon-instagram
+				color white
+				background #c0b2a9				
+			.icon-pinterest
+				color white
+				background #cb2229	
+			.icon-linkedin
+				color white
+				background #0274b3
+			.icon-github
+				color white
+				background #000000
+					
+@media (min-width $screen-sm-min) and (max-width $screen-sm-max)		
+	.header-customer
+		.navbar-collapse
+			margin-left 0em
+
+@media (max-width $screen-xs-max)
+	.header
+		.navbar-brand
+			background: url("../img/logo-tablet.png");
+			height: 10em;
+			width: 12.4em;	
+		.navbar-collapse
+			margin-left 10em	

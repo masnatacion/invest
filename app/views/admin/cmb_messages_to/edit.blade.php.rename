@@ -1,0 +1,56 @@
+@extends("crud.layout-form")
+
+@section("form")
+
+
+
+<div class="form-group @if ($errors->has('id_cmb_messages')) has-error @endif">
+
+ {{ Form::label("remotecombo", "Cmb_message") }}
+   
+      {{ Form::remotecombo("id_cmb_messages",$record->id_cmb_messages,["table"=>$model,"class" => "form-control","placeholder"=>"Cmb_message"] ); }}
+    
+ <span class="help-block">{{ $errors->first('id_cmb_messages') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('to_id_users')) has-error @endif">
+
+ {{ Form::label("number", "To id users") }}
+   
+      {{ Form::number("to_id_users",$record->to_id_users,["class" => "form-control","placeholder"=>"To id users"]); }}
+    
+ <span class="help-block">{{ $errors->first('to_id_users') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('to_id_type')) has-error @endif">
+
+ {{ Form::label("radiogroup", "To id type") }}
+   
+      {{ Form::radiogroup("to_id_type",$record->to_id_type,[],$columns->to_id_type->data); }}
+    
+ <span class="help-block">{{ $errors->first('to_id_type') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('to_flag')) has-error @endif">
+
+ {{ Form::label("number", "To flag") }}
+   
+      {{ Form::number("to_flag",$record->to_flag,["class" => "form-control","placeholder"=>"To flag"]); }}
+    
+ <span class="help-block">{{ $errors->first('to_flag') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('to_status')) has-error @endif">
+
+ {{ Form::label("radiogroup", "To status") }}
+   
+      {{ Form::radiogroup("to_status",$record->to_status,[],$columns->to_status->data); }}
+    
+ <span class="help-block">{{ $errors->first('to_status') }}</span>
+</div>
+
+     
+
+@stop
+
+

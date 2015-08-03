@@ -1,0 +1,61 @@
+{
+	"name": "laravel/laravel",
+	"description": "The Laravel Framework.",
+	"keywords": ["framework", "laravel"],
+	"license": "MIT",
+	"require": {
+		"laravel/framework": "4.2.*",
+		"doctrine/dbal": "2.4.*",
+		"vlucas/phpdotenv": "~1.1",
+		"watson/autologin": "dev-master",
+		"jenssegers/date": "~2.0",
+		"xethron/migrations-generator": "dev-master",
+		"schickling/backup": "0.6.*",
+		"jenssegers/agent": "~2.1",
+		"sunra/php-simple-html-dom-parser": "~1.5",
+		"intervention/image": "~2.0",
+		"intervention/imagecache": "~2.1",
+		"nicolaslopezj/searchable": "1.*",
+		"anouar/paypalpayment": "1.0",
+		"ceesvanegmond/minify": "2.0.*",
+		"ollieread/multiauth": "dev-master",
+		"mews/purifier": "dev-master-l4",
+		"torann/currency": "dev-master",
+		"atticmedia/anvard": "dev-master",
+		"conekta/conekta-php": "dev-master"
+	},
+	"require-dev": {
+	    "way/generators": "~2.0",
+	    "fzaninotto/faker": "v1.3.0"
+	},
+	"autoload": {
+		"classmap": [
+			"app/commands",
+			"app/controllers",
+			"app/controllers/admin",
+			"app/controllers/public",
+			"app/models",
+			"app/libraries",
+			"app/database/migrations",
+			"app/database/seeds",
+			"app/tests/TestCase.php"
+		]
+	},
+	"scripts": {
+		"post-install-cmd": [
+			"php artisan clear-compiled",
+			"php artisan optimize"
+		],
+		"post-update-cmd": [
+			"php artisan clear-compiled",
+			"php artisan optimize"
+		],
+		"post-create-project-cmd": [
+			"php artisan key:generate"
+		]
+	},
+	"config": {
+		"preferred-install": "dist"
+	},
+	"minimum-stability": "stable"
+}

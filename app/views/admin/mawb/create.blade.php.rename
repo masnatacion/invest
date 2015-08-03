@@ -1,0 +1,956 @@
+@extends("crud.layout-form")
+
+@section("form")
+
+
+
+<div class="form-group @if ($errors->has('id_certificate')) has-error @endif">
+
+ {{ Form::label("remotecombo", "Certificate") }}
+   
+      {{ Form::remotecombo("id_certificate",$record->id_certificate,["table"=>$model,"class" => "form-control","placeholder"=>"Certificate"] ); }}
+    
+ <span class="help-block">{{ $errors->first('id_certificate') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('id_agency')) has-error @endif">
+
+ {{ Form::label("remotecombo", "Agency") }}
+   
+      {{ Form::remotecombo("id_agency",$record->id_agency,["table"=>$model,"class" => "form-control","placeholder"=>"Agency"] ); }}
+    
+ <span class="help-block">{{ $errors->first('id_agency') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('id_handover')) has-error @endif">
+
+ {{ Form::label("remotecombo", "Handover") }}
+   
+      {{ Form::remotecombo("id_handover",$record->id_handover,["table"=>$model,"class" => "form-control","placeholder"=>"Handover"] ); }}
+    
+ <span class="help-block">{{ $errors->first('id_handover') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('issuedby')) has-error @endif">
+
+ {{ Form::label("text", "Issuedby") }}
+   
+      {{ Form::text("issuedby",$record->issuedby,["class" => "form-control","placeholder"=>"Issuedby"]); }}
+    
+ <span class="help-block">{{ $errors->first('issuedby') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('shippers_name_and_address')) has-error @endif">
+
+ {{ Form::label("textarea", "Shippers name and address") }}
+   
+      {{ Form::textarea("shippers_name_and_address", $record->shippers_name_and_address,["class" => "form-control","placeholder"=>"Shippers name and address"]) }}
+    
+ <span class="help-block">{{ $errors->first('shippers_name_and_address') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('shippers_account_number')) has-error @endif">
+
+ {{ Form::label("text", "Shippers account number") }}
+   
+      {{ Form::text("shippers_account_number",$record->shippers_account_number,["class" => "form-control","placeholder"=>"Shippers account number"]); }}
+    
+ <span class="help-block">{{ $errors->first('shippers_account_number') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('consignee_name_and_address')) has-error @endif">
+
+ {{ Form::label("textarea", "Consignee name and address") }}
+   
+      {{ Form::textarea("consignee_name_and_address", $record->consignee_name_and_address,["class" => "form-control","placeholder"=>"Consignee name and address"]) }}
+    
+ <span class="help-block">{{ $errors->first('consignee_name_and_address') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('consignee_account_number')) has-error @endif">
+
+ {{ Form::label("text", "Consignee account number") }}
+   
+      {{ Form::text("consignee_account_number",$record->consignee_account_number,["class" => "form-control","placeholder"=>"Consignee account number"]); }}
+    
+ <span class="help-block">{{ $errors->first('consignee_account_number') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('issuingcarrier_agent_name_and_city')) has-error @endif">
+
+ {{ Form::label("textarea", "Issuingcarrier agent name and city") }}
+   
+      {{ Form::textarea("issuingcarrier_agent_name_and_city", $record->issuingcarrier_agent_name_and_city,["class" => "form-control","placeholder"=>"Issuingcarrier agent name and city"]) }}
+    
+ <span class="help-block">{{ $errors->first('issuingcarrier_agent_name_and_city') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('accounting_information')) has-error @endif">
+
+ {{ Form::label("textarea", "Accounting information") }}
+   
+      {{ Form::textarea("accounting_information", $record->accounting_information,["class" => "form-control","placeholder"=>"Accounting information"]) }}
+    
+ <span class="help-block">{{ $errors->first('accounting_information') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('agentsiata_code')) has-error @endif">
+
+ {{ Form::label("text", "Agentsiata code") }}
+   
+      {{ Form::text("agentsiata_code",$record->agentsiata_code,["class" => "form-control","placeholder"=>"Agentsiata code"]); }}
+    
+ <span class="help-block">{{ $errors->first('agentsiata_code') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('account_no')) has-error @endif">
+
+ {{ Form::label("text", "Account no") }}
+   
+      {{ Form::text("account_no",$record->account_no,["class" => "form-control","placeholder"=>"Account no"]); }}
+    
+ <span class="help-block">{{ $errors->first('account_no') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('airport_of_departure')) has-error @endif">
+
+ {{ Form::label("text", "Airport of departure") }}
+   
+      {{ Form::text("airport_of_departure",$record->airport_of_departure,["class" => "form-control","placeholder"=>"Airport of departure"]); }}
+    
+ <span class="help-block">{{ $errors->first('airport_of_departure') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('to1')) has-error @endif">
+
+ {{ Form::label("text", "To1") }}
+   
+      {{ Form::text("to1",$record->to1,["class" => "form-control","placeholder"=>"To1"]); }}
+    
+ <span class="help-block">{{ $errors->first('to1') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('by_first_carrier')) has-error @endif">
+
+ {{ Form::label("text", "By first carrier") }}
+   
+      {{ Form::text("by_first_carrier",$record->by_first_carrier,["class" => "form-control","placeholder"=>"By first carrier"]); }}
+    
+ <span class="help-block">{{ $errors->first('by_first_carrier') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('to2')) has-error @endif">
+
+ {{ Form::label("text", "To2") }}
+   
+      {{ Form::text("to2",$record->to2,["class" => "form-control","placeholder"=>"To2"]); }}
+    
+ <span class="help-block">{{ $errors->first('to2') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('by1')) has-error @endif">
+
+ {{ Form::label("text", "By1") }}
+   
+      {{ Form::text("by1",$record->by1,["class" => "form-control","placeholder"=>"By1"]); }}
+    
+ <span class="help-block">{{ $errors->first('by1') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('to3')) has-error @endif">
+
+ {{ Form::label("text", "To3") }}
+   
+      {{ Form::text("to3",$record->to3,["class" => "form-control","placeholder"=>"To3"]); }}
+    
+ <span class="help-block">{{ $errors->first('to3') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('by2')) has-error @endif">
+
+ {{ Form::label("text", "By2") }}
+   
+      {{ Form::text("by2",$record->by2,["class" => "form-control","placeholder"=>"By2"]); }}
+    
+ <span class="help-block">{{ $errors->first('by2') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('currency')) has-error @endif">
+
+ {{ Form::label("text", "Currency") }}
+   
+      {{ Form::text("currency",$record->currency,["class" => "form-control","placeholder"=>"Currency"]); }}
+    
+ <span class="help-block">{{ $errors->first('currency') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('chgs_code')) has-error @endif">
+
+ {{ Form::label("text", "Chgs code") }}
+   
+      {{ Form::text("chgs_code",$record->chgs_code,["class" => "form-control","placeholder"=>"Chgs code"]); }}
+    
+ <span class="help-block">{{ $errors->first('chgs_code') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('wt_val_ppd')) has-error @endif">
+
+ {{ Form::label("text", "Wt val ppd") }}
+   
+      {{ Form::text("wt_val_ppd",$record->wt_val_ppd,["class" => "form-control","placeholder"=>"Wt val ppd"]); }}
+    
+ <span class="help-block">{{ $errors->first('wt_val_ppd') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('wt_val_coll')) has-error @endif">
+
+ {{ Form::label("text", "Wt val coll") }}
+   
+      {{ Form::text("wt_val_coll",$record->wt_val_coll,["class" => "form-control","placeholder"=>"Wt val coll"]); }}
+    
+ <span class="help-block">{{ $errors->first('wt_val_coll') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('other_ppd')) has-error @endif">
+
+ {{ Form::label("text", "Other ppd") }}
+   
+      {{ Form::text("other_ppd",$record->other_ppd,["class" => "form-control","placeholder"=>"Other ppd"]); }}
+    
+ <span class="help-block">{{ $errors->first('other_ppd') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('other_coll')) has-error @endif">
+
+ {{ Form::label("text", "Other coll") }}
+   
+      {{ Form::text("other_coll",$record->other_coll,["class" => "form-control","placeholder"=>"Other coll"]); }}
+    
+ <span class="help-block">{{ $errors->first('other_coll') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('declared_value_for_carriage')) has-error @endif">
+
+ {{ Form::label("text", "Declared value for carriage") }}
+   
+      {{ Form::text("declared_value_for_carriage",$record->declared_value_for_carriage,["class" => "form-control","placeholder"=>"Declared value for carriage"]); }}
+    
+ <span class="help-block">{{ $errors->first('declared_value_for_carriage') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('declared_value_for_customs')) has-error @endif">
+
+ {{ Form::label("text", "Declared value for customs") }}
+   
+      {{ Form::text("declared_value_for_customs",$record->declared_value_for_customs,["class" => "form-control","placeholder"=>"Declared value for customs"]); }}
+    
+ <span class="help-block">{{ $errors->first('declared_value_for_customs') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('airport_of_destination')) has-error @endif">
+
+ {{ Form::label("text", "Airport of destination") }}
+   
+      {{ Form::text("airport_of_destination",$record->airport_of_destination,["class" => "form-control","placeholder"=>"Airport of destination"]); }}
+    
+ <span class="help-block">{{ $errors->first('airport_of_destination') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('flight_date1')) has-error @endif">
+
+ {{ Form::label("text", "Flight date1") }}
+   
+      {{ Form::text("flight_date1",$record->flight_date1,["class" => "form-control","placeholder"=>"Flight date1"]); }}
+    
+ <span class="help-block">{{ $errors->first('flight_date1') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('flight_date2')) has-error @endif">
+
+ {{ Form::label("text", "Flight date2") }}
+   
+      {{ Form::text("flight_date2",$record->flight_date2,["class" => "form-control","placeholder"=>"Flight date2"]); }}
+    
+ <span class="help-block">{{ $errors->first('flight_date2') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('amount_of_insurance')) has-error @endif">
+
+ {{ Form::label("text", "Amount of insurance") }}
+   
+      {{ Form::text("amount_of_insurance",$record->amount_of_insurance,["class" => "form-control","placeholder"=>"Amount of insurance"]); }}
+    
+ <span class="help-block">{{ $errors->first('amount_of_insurance') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('handling_information')) has-error @endif">
+
+ {{ Form::label("textarea", "Handling information") }}
+   
+      {{ Form::textarea("handling_information", $record->handling_information,["class" => "form-control","placeholder"=>"Handling information"]) }}
+    
+ <span class="help-block">{{ $errors->first('handling_information') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('num_of_pieces_1')) has-error @endif">
+
+ {{ Form::label("number", "Num of pieces 1") }}
+   
+      {{ Form::number("num_of_pieces_1",$record->num_of_pieces_1,["class" => "form-control","placeholder"=>"Num of pieces 1"]); }}
+    
+ <span class="help-block">{{ $errors->first('num_of_pieces_1') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('gross_weight_1')) has-error @endif">
+
+ {{ Form::label("text", "Gross weight 1") }}
+   
+      {{ Form::text("gross_weight_1",$record->gross_weight_1,["class" => "form-control","placeholder"=>"Gross weight 1"]); }}
+    
+ <span class="help-block">{{ $errors->first('gross_weight_1') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('weight_unit_1')) has-error @endif">
+
+ {{ Form::label("radiogroup", "Weight unit 1") }}
+   
+      {{ Form::radiogroup("weight_unit_1",$record->weight_unit_1,[],$columns->weight_unit_1->data); }}
+    
+ <span class="help-block">{{ $errors->first('weight_unit_1') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('commodity_item_no_1')) has-error @endif">
+
+ {{ Form::label("text", "Commodity item no 1") }}
+   
+      {{ Form::text("commodity_item_no_1",$record->commodity_item_no_1,["class" => "form-control","placeholder"=>"Commodity item no 1"]); }}
+    
+ <span class="help-block">{{ $errors->first('commodity_item_no_1') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('chargeable_weight_1')) has-error @endif">
+
+ {{ Form::label("text", "Chargeable weight 1") }}
+   
+      {{ Form::text("chargeable_weight_1",$record->chargeable_weight_1,["class" => "form-control","placeholder"=>"Chargeable weight 1"]); }}
+    
+ <span class="help-block">{{ $errors->first('chargeable_weight_1') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('rate_charge_1')) has-error @endif">
+
+ {{ Form::label("text", "Rate charge 1") }}
+   
+      {{ Form::text("rate_charge_1",$record->rate_charge_1,["class" => "form-control","placeholder"=>"Rate charge 1"]); }}
+    
+ <span class="help-block">{{ $errors->first('rate_charge_1') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('total_charge_1')) has-error @endif">
+
+ {{ Form::label("text", "Total charge 1") }}
+   
+      {{ Form::text("total_charge_1",$record->total_charge_1,["class" => "form-control","placeholder"=>"Total charge 1"]); }}
+    
+ <span class="help-block">{{ $errors->first('total_charge_1') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('description_1')) has-error @endif">
+
+ {{ Form::label("text", "Description 1") }}
+   
+      {{ Form::text("description_1",$record->description_1,["class" => "form-control","placeholder"=>"Description 1"]); }}
+    
+ <span class="help-block">{{ $errors->first('description_1') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('num_of_pieces_2')) has-error @endif">
+
+ {{ Form::label("number", "Num of pieces 2") }}
+   
+      {{ Form::number("num_of_pieces_2",$record->num_of_pieces_2,["class" => "form-control","placeholder"=>"Num of pieces 2"]); }}
+    
+ <span class="help-block">{{ $errors->first('num_of_pieces_2') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('gross_weight_2')) has-error @endif">
+
+ {{ Form::label("text", "Gross weight 2") }}
+   
+      {{ Form::text("gross_weight_2",$record->gross_weight_2,["class" => "form-control","placeholder"=>"Gross weight 2"]); }}
+    
+ <span class="help-block">{{ $errors->first('gross_weight_2') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('weight_unit_2')) has-error @endif">
+
+ {{ Form::label("radiogroup", "Weight unit 2") }}
+   
+      {{ Form::radiogroup("weight_unit_2",$record->weight_unit_2,[],$columns->weight_unit_2->data); }}
+    
+ <span class="help-block">{{ $errors->first('weight_unit_2') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('commodity_item_no_2')) has-error @endif">
+
+ {{ Form::label("text", "Commodity item no 2") }}
+   
+      {{ Form::text("commodity_item_no_2",$record->commodity_item_no_2,["class" => "form-control","placeholder"=>"Commodity item no 2"]); }}
+    
+ <span class="help-block">{{ $errors->first('commodity_item_no_2') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('chargeable_weight_2')) has-error @endif">
+
+ {{ Form::label("text", "Chargeable weight 2") }}
+   
+      {{ Form::text("chargeable_weight_2",$record->chargeable_weight_2,["class" => "form-control","placeholder"=>"Chargeable weight 2"]); }}
+    
+ <span class="help-block">{{ $errors->first('chargeable_weight_2') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('rate_charge_2')) has-error @endif">
+
+ {{ Form::label("text", "Rate charge 2") }}
+   
+      {{ Form::text("rate_charge_2",$record->rate_charge_2,["class" => "form-control","placeholder"=>"Rate charge 2"]); }}
+    
+ <span class="help-block">{{ $errors->first('rate_charge_2') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('total_charge_2')) has-error @endif">
+
+ {{ Form::label("text", "Total charge 2") }}
+   
+      {{ Form::text("total_charge_2",$record->total_charge_2,["class" => "form-control","placeholder"=>"Total charge 2"]); }}
+    
+ <span class="help-block">{{ $errors->first('total_charge_2') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('description_2')) has-error @endif">
+
+ {{ Form::label("text", "Description 2") }}
+   
+      {{ Form::text("description_2",$record->description_2,["class" => "form-control","placeholder"=>"Description 2"]); }}
+    
+ <span class="help-block">{{ $errors->first('description_2') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('num_of_pieces_3')) has-error @endif">
+
+ {{ Form::label("number", "Num of pieces 3") }}
+   
+      {{ Form::number("num_of_pieces_3",$record->num_of_pieces_3,["class" => "form-control","placeholder"=>"Num of pieces 3"]); }}
+    
+ <span class="help-block">{{ $errors->first('num_of_pieces_3') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('gross_weight_3')) has-error @endif">
+
+ {{ Form::label("text", "Gross weight 3") }}
+   
+      {{ Form::text("gross_weight_3",$record->gross_weight_3,["class" => "form-control","placeholder"=>"Gross weight 3"]); }}
+    
+ <span class="help-block">{{ $errors->first('gross_weight_3') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('weight_unit_3')) has-error @endif">
+
+ {{ Form::label("radiogroup", "Weight unit 3") }}
+   
+      {{ Form::radiogroup("weight_unit_3",$record->weight_unit_3,[],$columns->weight_unit_3->data); }}
+    
+ <span class="help-block">{{ $errors->first('weight_unit_3') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('commodity_item_no_3')) has-error @endif">
+
+ {{ Form::label("text", "Commodity item no 3") }}
+   
+      {{ Form::text("commodity_item_no_3",$record->commodity_item_no_3,["class" => "form-control","placeholder"=>"Commodity item no 3"]); }}
+    
+ <span class="help-block">{{ $errors->first('commodity_item_no_3') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('chargeable_weight_3')) has-error @endif">
+
+ {{ Form::label("text", "Chargeable weight 3") }}
+   
+      {{ Form::text("chargeable_weight_3",$record->chargeable_weight_3,["class" => "form-control","placeholder"=>"Chargeable weight 3"]); }}
+    
+ <span class="help-block">{{ $errors->first('chargeable_weight_3') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('rate_charge_3')) has-error @endif">
+
+ {{ Form::label("text", "Rate charge 3") }}
+   
+      {{ Form::text("rate_charge_3",$record->rate_charge_3,["class" => "form-control","placeholder"=>"Rate charge 3"]); }}
+    
+ <span class="help-block">{{ $errors->first('rate_charge_3') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('total_charge_3')) has-error @endif">
+
+ {{ Form::label("text", "Total charge 3") }}
+   
+      {{ Form::text("total_charge_3",$record->total_charge_3,["class" => "form-control","placeholder"=>"Total charge 3"]); }}
+    
+ <span class="help-block">{{ $errors->first('total_charge_3') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('description_3')) has-error @endif">
+
+ {{ Form::label("text", "Description 3") }}
+   
+      {{ Form::text("description_3",$record->description_3,["class" => "form-control","placeholder"=>"Description 3"]); }}
+    
+ <span class="help-block">{{ $errors->first('description_3') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('num_of_pieces_4')) has-error @endif">
+
+ {{ Form::label("number", "Num of pieces 4") }}
+   
+      {{ Form::number("num_of_pieces_4",$record->num_of_pieces_4,["class" => "form-control","placeholder"=>"Num of pieces 4"]); }}
+    
+ <span class="help-block">{{ $errors->first('num_of_pieces_4') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('gross_weight_4')) has-error @endif">
+
+ {{ Form::label("text", "Gross weight 4") }}
+   
+      {{ Form::text("gross_weight_4",$record->gross_weight_4,["class" => "form-control","placeholder"=>"Gross weight 4"]); }}
+    
+ <span class="help-block">{{ $errors->first('gross_weight_4') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('weight_unit_4')) has-error @endif">
+
+ {{ Form::label("radiogroup", "Weight unit 4") }}
+   
+      {{ Form::radiogroup("weight_unit_4",$record->weight_unit_4,[],$columns->weight_unit_4->data); }}
+    
+ <span class="help-block">{{ $errors->first('weight_unit_4') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('commodity_item_no_4')) has-error @endif">
+
+ {{ Form::label("text", "Commodity item no 4") }}
+   
+      {{ Form::text("commodity_item_no_4",$record->commodity_item_no_4,["class" => "form-control","placeholder"=>"Commodity item no 4"]); }}
+    
+ <span class="help-block">{{ $errors->first('commodity_item_no_4') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('chargeable_weight_4')) has-error @endif">
+
+ {{ Form::label("text", "Chargeable weight 4") }}
+   
+      {{ Form::text("chargeable_weight_4",$record->chargeable_weight_4,["class" => "form-control","placeholder"=>"Chargeable weight 4"]); }}
+    
+ <span class="help-block">{{ $errors->first('chargeable_weight_4') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('rate_charge_4')) has-error @endif">
+
+ {{ Form::label("text", "Rate charge 4") }}
+   
+      {{ Form::text("rate_charge_4",$record->rate_charge_4,["class" => "form-control","placeholder"=>"Rate charge 4"]); }}
+    
+ <span class="help-block">{{ $errors->first('rate_charge_4') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('total_charge_4')) has-error @endif">
+
+ {{ Form::label("text", "Total charge 4") }}
+   
+      {{ Form::text("total_charge_4",$record->total_charge_4,["class" => "form-control","placeholder"=>"Total charge 4"]); }}
+    
+ <span class="help-block">{{ $errors->first('total_charge_4') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('description_4')) has-error @endif">
+
+ {{ Form::label("text", "Description 4") }}
+   
+      {{ Form::text("description_4",$record->description_4,["class" => "form-control","placeholder"=>"Description 4"]); }}
+    
+ <span class="help-block">{{ $errors->first('description_4') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('num_of_pieces_5')) has-error @endif">
+
+ {{ Form::label("number", "Num of pieces 5") }}
+   
+      {{ Form::number("num_of_pieces_5",$record->num_of_pieces_5,["class" => "form-control","placeholder"=>"Num of pieces 5"]); }}
+    
+ <span class="help-block">{{ $errors->first('num_of_pieces_5') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('gross_weight_5')) has-error @endif">
+
+ {{ Form::label("text", "Gross weight 5") }}
+   
+      {{ Form::text("gross_weight_5",$record->gross_weight_5,["class" => "form-control","placeholder"=>"Gross weight 5"]); }}
+    
+ <span class="help-block">{{ $errors->first('gross_weight_5') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('weight_unit_5')) has-error @endif">
+
+ {{ Form::label("radiogroup", "Weight unit 5") }}
+   
+      {{ Form::radiogroup("weight_unit_5",$record->weight_unit_5,[],$columns->weight_unit_5->data); }}
+    
+ <span class="help-block">{{ $errors->first('weight_unit_5') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('commodity_item_no_5')) has-error @endif">
+
+ {{ Form::label("text", "Commodity item no 5") }}
+   
+      {{ Form::text("commodity_item_no_5",$record->commodity_item_no_5,["class" => "form-control","placeholder"=>"Commodity item no 5"]); }}
+    
+ <span class="help-block">{{ $errors->first('commodity_item_no_5') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('chargeable_weight_5')) has-error @endif">
+
+ {{ Form::label("text", "Chargeable weight 5") }}
+   
+      {{ Form::text("chargeable_weight_5",$record->chargeable_weight_5,["class" => "form-control","placeholder"=>"Chargeable weight 5"]); }}
+    
+ <span class="help-block">{{ $errors->first('chargeable_weight_5') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('rate_charge_5')) has-error @endif">
+
+ {{ Form::label("text", "Rate charge 5") }}
+   
+      {{ Form::text("rate_charge_5",$record->rate_charge_5,["class" => "form-control","placeholder"=>"Rate charge 5"]); }}
+    
+ <span class="help-block">{{ $errors->first('rate_charge_5') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('total_charge_5')) has-error @endif">
+
+ {{ Form::label("text", "Total charge 5") }}
+   
+      {{ Form::text("total_charge_5",$record->total_charge_5,["class" => "form-control","placeholder"=>"Total charge 5"]); }}
+    
+ <span class="help-block">{{ $errors->first('total_charge_5') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('description_5')) has-error @endif">
+
+ {{ Form::label("text", "Description 5") }}
+   
+      {{ Form::text("description_5",$record->description_5,["class" => "form-control","placeholder"=>"Description 5"]); }}
+    
+ <span class="help-block">{{ $errors->first('description_5') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('num_of_pieces_6')) has-error @endif">
+
+ {{ Form::label("number", "Num of pieces 6") }}
+   
+      {{ Form::number("num_of_pieces_6",$record->num_of_pieces_6,["class" => "form-control","placeholder"=>"Num of pieces 6"]); }}
+    
+ <span class="help-block">{{ $errors->first('num_of_pieces_6') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('gross_weight_6')) has-error @endif">
+
+ {{ Form::label("text", "Gross weight 6") }}
+   
+      {{ Form::text("gross_weight_6",$record->gross_weight_6,["class" => "form-control","placeholder"=>"Gross weight 6"]); }}
+    
+ <span class="help-block">{{ $errors->first('gross_weight_6') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('weight_unit_6')) has-error @endif">
+
+ {{ Form::label("radiogroup", "Weight unit 6") }}
+   
+      {{ Form::radiogroup("weight_unit_6",$record->weight_unit_6,[],$columns->weight_unit_6->data); }}
+    
+ <span class="help-block">{{ $errors->first('weight_unit_6') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('commodity_item_no_6')) has-error @endif">
+
+ {{ Form::label("text", "Commodity item no 6") }}
+   
+      {{ Form::text("commodity_item_no_6",$record->commodity_item_no_6,["class" => "form-control","placeholder"=>"Commodity item no 6"]); }}
+    
+ <span class="help-block">{{ $errors->first('commodity_item_no_6') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('chargeable_weight_6')) has-error @endif">
+
+ {{ Form::label("text", "Chargeable weight 6") }}
+   
+      {{ Form::text("chargeable_weight_6",$record->chargeable_weight_6,["class" => "form-control","placeholder"=>"Chargeable weight 6"]); }}
+    
+ <span class="help-block">{{ $errors->first('chargeable_weight_6') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('rate_charge_6')) has-error @endif">
+
+ {{ Form::label("text", "Rate charge 6") }}
+   
+      {{ Form::text("rate_charge_6",$record->rate_charge_6,["class" => "form-control","placeholder"=>"Rate charge 6"]); }}
+    
+ <span class="help-block">{{ $errors->first('rate_charge_6') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('total_charge_6')) has-error @endif">
+
+ {{ Form::label("text", "Total charge 6") }}
+   
+      {{ Form::text("total_charge_6",$record->total_charge_6,["class" => "form-control","placeholder"=>"Total charge 6"]); }}
+    
+ <span class="help-block">{{ $errors->first('total_charge_6') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('description_6')) has-error @endif">
+
+ {{ Form::label("text", "Description 6") }}
+   
+      {{ Form::text("description_6",$record->description_6,["class" => "form-control","placeholder"=>"Description 6"]); }}
+    
+ <span class="help-block">{{ $errors->first('description_6') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('total_num_of_pieces')) has-error @endif">
+
+ {{ Form::label("number", "Total num of pieces") }}
+   
+      {{ Form::number("total_num_of_pieces",$record->total_num_of_pieces,["class" => "form-control","placeholder"=>"Total num of pieces"]); }}
+    
+ <span class="help-block">{{ $errors->first('total_num_of_pieces') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('total_gross_weight')) has-error @endif">
+
+ {{ Form::label("text", "Total gross weight") }}
+   
+      {{ Form::text("total_gross_weight",$record->total_gross_weight,["class" => "form-control","placeholder"=>"Total gross weight"]); }}
+    
+ <span class="help-block">{{ $errors->first('total_gross_weight') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('total_total_charge')) has-error @endif">
+
+ {{ Form::label("text", "Total total charge") }}
+   
+      {{ Form::text("total_total_charge",$record->total_total_charge,["class" => "form-control","placeholder"=>"Total total charge"]); }}
+    
+ <span class="help-block">{{ $errors->first('total_total_charge') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('weight_charge_prepaid')) has-error @endif">
+
+ {{ Form::label("text", "Weight charge prepaid") }}
+   
+      {{ Form::text("weight_charge_prepaid",$record->weight_charge_prepaid,["class" => "form-control","placeholder"=>"Weight charge prepaid"]); }}
+    
+ <span class="help-block">{{ $errors->first('weight_charge_prepaid') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('weightcharge_collect')) has-error @endif">
+
+ {{ Form::label("text", "Weightcharge collect") }}
+   
+      {{ Form::text("weightcharge_collect",$record->weightcharge_collect,["class" => "form-control","placeholder"=>"Weightcharge collect"]); }}
+    
+ <span class="help-block">{{ $errors->first('weightcharge_collect') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('valuationcharge_prepaid')) has-error @endif">
+
+ {{ Form::label("text", "Valuationcharge prepaid") }}
+   
+      {{ Form::text("valuationcharge_prepaid",$record->valuationcharge_prepaid,["class" => "form-control","placeholder"=>"Valuationcharge prepaid"]); }}
+    
+ <span class="help-block">{{ $errors->first('valuationcharge_prepaid') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('valuationcharge_collect')) has-error @endif">
+
+ {{ Form::label("text", "Valuationcharge collect") }}
+   
+      {{ Form::text("valuationcharge_collect",$record->valuationcharge_collect,["class" => "form-control","placeholder"=>"Valuationcharge collect"]); }}
+    
+ <span class="help-block">{{ $errors->first('valuationcharge_collect') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('tax_prepaid')) has-error @endif">
+
+ {{ Form::label("text", "Tax prepaid") }}
+   
+      {{ Form::text("tax_prepaid",$record->tax_prepaid,["class" => "form-control","placeholder"=>"Tax prepaid"]); }}
+    
+ <span class="help-block">{{ $errors->first('tax_prepaid') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('tax_collect')) has-error @endif">
+
+ {{ Form::label("text", "Tax collect") }}
+   
+      {{ Form::text("tax_collect",$record->tax_collect,["class" => "form-control","placeholder"=>"Tax collect"]); }}
+    
+ <span class="help-block">{{ $errors->first('tax_collect') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('total_other_chargedue_agent_prepaid')) has-error @endif">
+
+ {{ Form::label("text", "Total other chargedue agent prepaid") }}
+   
+      {{ Form::text("total_other_chargedue_agent_prepaid",$record->total_other_chargedue_agent_prepaid,["class" => "form-control","placeholder"=>"Total other chargedue agent prepaid"]); }}
+    
+ <span class="help-block">{{ $errors->first('total_other_chargedue_agent_prepaid') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('total_other_chargedue_agent_collect')) has-error @endif">
+
+ {{ Form::label("text", "Total other chargedue agent collect") }}
+   
+      {{ Form::text("total_other_chargedue_agent_collect",$record->total_other_chargedue_agent_collect,["class" => "form-control","placeholder"=>"Total other chargedue agent collect"]); }}
+    
+ <span class="help-block">{{ $errors->first('total_other_chargedue_agent_collect') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('total_other_chargedue_carrier_prepaid')) has-error @endif">
+
+ {{ Form::label("text", "Total other chargedue carrier prepaid") }}
+   
+      {{ Form::text("total_other_chargedue_carrier_prepaid",$record->total_other_chargedue_carrier_prepaid,["class" => "form-control","placeholder"=>"Total other chargedue carrier prepaid"]); }}
+    
+ <span class="help-block">{{ $errors->first('total_other_chargedue_carrier_prepaid') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('total_other_chargedue_carrier_collect')) has-error @endif">
+
+ {{ Form::label("text", "Total other chargedue carrier collect") }}
+   
+      {{ Form::text("total_other_chargedue_carrier_collect",$record->total_other_chargedue_carrier_collect,["class" => "form-control","placeholder"=>"Total other chargedue carrier collect"]); }}
+    
+ <span class="help-block">{{ $errors->first('total_other_chargedue_carrier_collect') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('other_charge1_desc')) has-error @endif">
+
+ {{ Form::label("text", "Other charge1 desc") }}
+   
+      {{ Form::text("other_charge1_desc",$record->other_charge1_desc,["class" => "form-control","placeholder"=>"Other charge1 desc"]); }}
+    
+ <span class="help-block">{{ $errors->first('other_charge1_desc') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('other_charge2_desc')) has-error @endif">
+
+ {{ Form::label("text", "Other charge2 desc") }}
+   
+      {{ Form::text("other_charge2_desc",$record->other_charge2_desc,["class" => "form-control","placeholder"=>"Other charge2 desc"]); }}
+    
+ <span class="help-block">{{ $errors->first('other_charge2_desc') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('other_charge3_desc')) has-error @endif">
+
+ {{ Form::label("text", "Other charge3 desc") }}
+   
+      {{ Form::text("other_charge3_desc",$record->other_charge3_desc,["class" => "form-control","placeholder"=>"Other charge3 desc"]); }}
+    
+ <span class="help-block">{{ $errors->first('other_charge3_desc') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('cod_currency')) has-error @endif">
+
+ {{ Form::label("text", "Cod currency") }}
+   
+      {{ Form::text("cod_currency",$record->cod_currency,["class" => "form-control","placeholder"=>"Cod currency"]); }}
+    
+ <span class="help-block">{{ $errors->first('cod_currency') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('total_prepaid')) has-error @endif">
+
+ {{ Form::label("text", "Total prepaid") }}
+   
+      {{ Form::text("total_prepaid",$record->total_prepaid,["class" => "form-control","placeholder"=>"Total prepaid"]); }}
+    
+ <span class="help-block">{{ $errors->first('total_prepaid') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('total_collect')) has-error @endif">
+
+ {{ Form::label("text", "Total collect") }}
+   
+      {{ Form::text("total_collect",$record->total_collect,["class" => "form-control","placeholder"=>"Total collect"]); }}
+    
+ <span class="help-block">{{ $errors->first('total_collect') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('currency_conversion_rates')) has-error @endif">
+
+ {{ Form::label("text", "Currency conversion rates") }}
+   
+      {{ Form::text("currency_conversion_rates",$record->currency_conversion_rates,["class" => "form-control","placeholder"=>"Currency conversion rates"]); }}
+    
+ <span class="help-block">{{ $errors->first('currency_conversion_rates') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('cccharges_indest_currency')) has-error @endif">
+
+ {{ Form::label("text", "Cccharges indest currency") }}
+   
+      {{ Form::text("cccharges_indest_currency",$record->cccharges_indest_currency,["class" => "form-control","placeholder"=>"Cccharges indest currency"]); }}
+    
+ <span class="help-block">{{ $errors->first('cccharges_indest_currency') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('charges_at_destination')) has-error @endif">
+
+ {{ Form::label("text", "Charges at destination") }}
+   
+      {{ Form::text("charges_at_destination",$record->charges_at_destination,["class" => "form-control","placeholder"=>"Charges at destination"]); }}
+    
+ <span class="help-block">{{ $errors->first('charges_at_destination') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('total_collect_charges')) has-error @endif">
+
+ {{ Form::label("text", "Total collect charges") }}
+   
+      {{ Form::text("total_collect_charges",$record->total_collect_charges,["class" => "form-control","placeholder"=>"Total collect charges"]); }}
+    
+ <span class="help-block">{{ $errors->first('total_collect_charges') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('signature')) has-error @endif">
+
+ {{ Form::label("text", "Signature") }}
+   
+      {{ Form::text("signature",$record->signature,["class" => "form-control","placeholder"=>"Signature"]); }}
+    
+ <span class="help-block">{{ $errors->first('signature') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('executedon')) has-error @endif">
+
+ {{ Form::label("text", "Executedon") }}
+   
+      {{ Form::text("executedon",$record->executedon,["class" => "form-control","placeholder"=>"Executedon"]); }}
+    
+ <span class="help-block">{{ $errors->first('executedon') }}</span>
+</div>
+
+     
+
+@stop
+
+

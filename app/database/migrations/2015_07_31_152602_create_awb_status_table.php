@@ -1,0 +1,48 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+
+class CreateAwbStatusTable extends Migration {
+
+	/**
+	 * Run the migrations.
+	 *
+	 * @return void
+	 */
+	public function up()
+	{
+		Schema::create('awb_status', function(Blueprint $table)
+		{
+			$table->increments('id_awb_status');
+			$table->integer('id_awb')->index('id_awb');
+			$table->integer('id_agency')->index('id_agency');
+			$table->integer('id_fagency')->nullable()->index('id_fagency');
+			$table->integer('id_invoice')->nullable()->index('id_invoice');
+			$table->integer('id_manifest')->nullable()->index('id_manifest');
+			$table->integer('id_mawb')->nullable();
+			$table->integer('id_certificate')->nullable()->index('id_certificate');
+			$table->integer('id_blading')->nullable()->index('id_blading');
+			$table->integer('id_delivery')->nullable()->index('id_delivery');
+			$table->enum('status_pay', array('Paid','unpaid'))->index('status_pay');
+			$table->enum('status', array('New','Forwarding','In Transit','Inbound','Delivered','Error'))->index('status');
+			$table->integer('created_by');
+			$table->integer('updated_by')->nullable();
+			$table->timestamps();
+			$table->integer('deleted_by')->nullable();
+			$table->softDeletes();
+		});
+	}
+
+
+	/**
+	 * Reverse the migrations.
+	 *
+	 * @return void
+	 */
+	public function down()
+	{
+		Schema::drop('awb_status');
+	}
+
+}
