@@ -97,12 +97,12 @@ class Users extends Crud implements UserInterface, RemindableInterface {
         // ["first_name" => "text"] 
         // "remotemultiple","multiple","radiogroup","radios","editor","toggle","html","text", "hidden", "digit", "textarea", "password", "email","datetime","date","time","select","autocomplete","money","currency","file","document","audio","video","zip"
         //
-        "inputs"    => ["id_agency" => "remotemultiple"],
+        "inputs"    => [],
         // 
         // Choose column or columns for the FK to show
         // ["id_roles" => "name"] or ["id_roles" => ["name","status"]]
         //
-        "fk_column" => ["id_roles" => "name","id_agency"=>"company_name"],
+        "fk_column" => [],
         //
         // JOINS
         // Remember by default the framework create autojoins when you define id_(table)   
@@ -129,14 +129,14 @@ class Users extends Crud implements UserInterface, RemindableInterface {
         //
         // *** This feature is only from the USERS model.
         //    
-        "filter_queries" => ["id_agency"],          
+        "filter_queries" => [],          
         // 
         // Tabs
         // Allways create names of tabs with snake case for example
         // if you want Chart Report tab you will write chart_report
         // ["chart_report","permissions","settings"]
         //
-        "tabs"      => ["chart_report"=>"Chart Report"],
+        "tabs"      => [],
         // 
         // Default Tabs
         // if you can change the columns and inputs you will go to model

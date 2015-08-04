@@ -20,11 +20,8 @@ Form::macro('toggle', function($name, $default = "false", $attrs = [],$data=[])
 
     $default = (Input::old($name)) ? Input::old($name) : $default;
         
-    $item = '<input type="hidden" name="'. $name .'" ';
-    $item .= 'value="'. $default .'" ';
-    $item .= '>';
 
-    $item .= '<input type="checkbox" data-toggle="toggle" name="'. $name .'" data-onstyle="success" data-offstyle="danger"';
+    $item = '<input type="checkbox" data-toggle="toggle" name="'. $name .'" data-onstyle="success" data-offstyle="danger"';
 
     $item .= 'value="'. $default .'" ';
 
@@ -49,6 +46,12 @@ Form::macro('toggle', function($name, $default = "false", $attrs = [],$data=[])
     }
 
     $item .= ">";
+
+    $item .= '<input type="hidden" name="'. $name .'" ';
+    $item .= 'value="'. $default .'" ';
+    $item .= '>';
+
+
 
     return $item;
 });
@@ -166,7 +169,18 @@ Form::macro('filepicker', function($name, $default = NULL, $attrs = array())
     $item = '<div class="fileinput fileinput-new input-group" data-provides="fileinput">';
         $item.= '<div class="form-control" data-trigger="fileinput">';
             $item.= '<i class="glyphicon glyphicon-file fileinput-exists"></i>'; 
-            $item.= '<span class="fileinput-filename"></span>';
+
+            if(isset($attrs["record"]) && isset($attrs["record"]->{$name."_name"}))
+            {
+                $item .= '<input type="hidden" name="'. $name."_name" .'" ';
+                        $item .= 'value="'. $attrs["record"]->{$name."_name"} .'" ';
+                $item .= '>';
+
+                $item.= '<span class="fileinput-filename">'.$attrs["record"]->{$name."_name"}.'</span>';
+            }
+                
+            else
+                $item.= '<span class="fileinput-filename"></span>';
         $item.= '</div>';
 
     $item.= '<span class="input-group-addon btn btn-default btn-file">';
@@ -353,9 +367,7 @@ Form::macro('remotemultiple', function($name, $default = NULL, $attrs = [], $url
         $attrs["table"] = "";
     
     $attrs["table"] = toTable($attrs["table"]);
-    $value = [];
-    if($default)
-        $value = [$default => $default];
+    $value = [$default => $default];
 
 
     if(!$url)
@@ -410,9 +422,7 @@ Form::macro('remotecombo', function($name, $default = NULL, $attrs = [], $url = 
         $attrs["table"] = "";
     
     $attrs["table"] = toTable($attrs["table"]);
-    $value = [];
-    if($default)
-        $value = [$default => $default];
+    $value = [$default => $default];
 
 
     if(!$url)
