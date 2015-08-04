@@ -2,21 +2,24 @@
   <!-- Indicators -->
   <ol class="carousel-indicators">
     <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-    
+    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
   </ol>
 
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
     <div class="item active">
-      <img src="./img/carousel.jpg" alt="..." class="img-responsive">
+      <img src="..." alt="...">
       <div class="carousel-caption">
-        <h2>We are not just in the <strong>courier business</strong>, but in the customer 
-<strong>satisfaction business</strong>.</h2>
-
-        
+        ...
       </div>
     </div>
-
+    <div class="item">
+      <img src="..." alt="...">
+      <div class="carousel-caption">
+        ...
+      </div>
+    </div>
     ...
   </div>
 

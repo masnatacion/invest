@@ -71,7 +71,7 @@
         ?>
         {{ Minify::javascript($js,['js_build_path'=>'js/']) }}
 
-
+        @yield("javascript")
 
 
 

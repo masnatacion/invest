@@ -273,7 +273,7 @@ class CrudBase extends \BaseModel {
     public function beforeShow(&$params){}
 
 
-    protected $default_crud = [
+    public $default_crud = [
         //
         // Title
         //
@@ -981,8 +981,6 @@ class CrudBase extends \BaseModel {
             }
 
 
-
-
             $return->{$name}= (object)[
                         "is_primary"     => $is_primary,
                         "is_foreign_key" => $is_foreign_key,
@@ -1000,6 +998,16 @@ class CrudBase extends \BaseModel {
                         "required"       => $column->getNotNull()
                         //"value"            => $value
                         ];
+        }
+
+
+        foreach ($return as $column) {
+
+            if (in_array($column->input, $this->inputFiles))
+            {
+                if(isset($return->{$column->name."_name"}))
+                    $return->{$column->name."_name"}->input = "hidden";
+            }
         }
 
 
