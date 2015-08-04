@@ -1,0 +1,137 @@
+@extends("crud.layout-form")
+
+@section("form")
+
+
+
+<div class="form-group @if ($errors->has('status')) has-error @endif">
+
+ {{ Form::label("radiogroup", "Status") }}
+   
+      {{ Form::radiogroup("status",$record->status,[],$columns->status->data); }}
+    
+ <span class="help-block">{{ $errors->first('status') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('nombre')) has-error @endif">
+
+ {{ Form::label("text", "Nombre") }}
+   
+      {{ Form::text("nombre",$record->nombre,["class" => "form-control","placeholder"=>"Nombre"]); }}
+    
+ <span class="help-block">{{ $errors->first('nombre') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('direccion')) has-error @endif">
+
+ {{ Form::label("textarea", "Direccion") }}
+   
+      {{ Form::textarea("direccion", $record->direccion,["class" => "form-control","placeholder"=>"Direccion"]) }}
+    
+ <span class="help-block">{{ $errors->first('direccion') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('categoria')) has-error @endif">
+
+ {{ Form::label("text", "Categoria") }}
+   
+      {{ Form::text("categoria",$record->categoria,["class" => "form-control","placeholder"=>"Categoria"]); }}
+    
+ <span class="help-block">{{ $errors->first('categoria') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('estado')) has-error @endif">
+
+ {{ Form::label("text", "Estado") }}
+   
+      {{ Form::text("estado",$record->estado,["class" => "form-control","placeholder"=>"Estado"]); }}
+    
+ <span class="help-block">{{ $errors->first('estado') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('municipio')) has-error @endif">
+
+ {{ Form::label("text", "Municipio") }}
+   
+      {{ Form::text("municipio",$record->municipio,["class" => "form-control","placeholder"=>"Municipio"]); }}
+    
+ <span class="help-block">{{ $errors->first('municipio') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('superficie_terreno')) has-error @endif">
+
+ {{ Form::label("text", "Superficie terreno") }}
+   
+      {{ Form::text("superficie_terreno",$record->superficie_terreno,["class" => "form-control","placeholder"=>"Superficie terreno"]); }}
+    
+ <span class="help-block">{{ $errors->first('superficie_terreno') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('construccion')) has-error @endif">
+
+ {{ Form::label("textarea", "Construccion") }}
+   
+      {{ Form::textarea("construccion", $record->construccion,["class" => "form-control","placeholder"=>"Construccion"]) }}
+    
+ <span class="help-block">{{ $errors->first('construccion') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('estacionamiento')) has-error @endif">
+
+ {{ Form::label("textarea", "Estacionamiento") }}
+   
+      {{ Form::textarea("estacionamiento", $record->estacionamiento,["class" => "form-control","placeholder"=>"Estacionamiento"]) }}
+    
+ <span class="help-block">{{ $errors->first('estacionamiento') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('local_disponible')) has-error @endif">
+
+ {{ Form::label("textarea", "Local disponible") }}
+   
+      {{ Form::textarea("local_disponible", $record->local_disponible,["class" => "form-control","placeholder"=>"Local disponible"]) }}
+    
+ <span class="help-block">{{ $errors->first('local_disponible') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('informes')) has-error @endif">
+
+ {{ Form::label("textarea", "Informes") }}
+   
+      {{ Form::textarea("informes", $record->informes,["class" => "form-control","placeholder"=>"Informes"]) }}
+    
+ <span class="help-block">{{ $errors->first('informes') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('fotografia')) has-error @endif">
+
+ {{ Form::label("text", "Fotografia") }}
+   
+      {{ Form::text("fotografia",$record->fotografia,["class" => "form-control","placeholder"=>"Fotografia"]); }}
+    
+ <span class="help-block">{{ $errors->first('fotografia') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('plano_aquitectonico')) has-error @endif">
+
+ {{ Form::label("text", "Plano aquitectonico") }}
+   
+      {{ Form::text("plano_aquitectonico",$record->plano_aquitectonico,["class" => "form-control","placeholder"=>"Plano aquitectonico"]); }}
+    
+ <span class="help-block">{{ $errors->first('plano_aquitectonico') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('google_maps')) has-error @endif">
+
+ {{ Form::label("textarea", "Google maps") }}
+   
+      {{ Form::textarea("google_maps", $record->google_maps,["class" => "form-control","placeholder"=>"Google maps"]) }}
+    
+ <span class="help-block">{{ $errors->first('google_maps') }}</span>
+</div>
+
+     
+
+@stop
+
+

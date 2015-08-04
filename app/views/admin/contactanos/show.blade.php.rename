@@ -6,82 +6,58 @@
 	
 <div class="row">
 	<div class="col-xs-2 text-right bg-primary h4">
-		{{ Form::label($columns->id_users->input, $columns->id_users->label) }}
+		{{ Form::label($columns->id_contactanos->input, $columns->id_contactanos->label) }}
 	</div>
 	<div class="col-xs-10 h4">
-		{{ parseToHTML($columns->id_users,$record,$fk_column) }}
+		{{ parseToHTML($columns->id_contactanos,$record,$fk_column) }}
 	</div>
 </div>
 <div class="row">
 	<div class="col-xs-2 text-right ">
-		{{ Form::label($columns->id_roles->input, $columns->id_roles->label) }}
+		{{ Form::label($columns->nombre->input, $columns->nombre->label) }}
 	</div>
 	<div class="col-xs-10 ">
-		{{ parseToHTML($columns->id_roles,$record,$fk_column) }}
+		{{ parseToHTML($columns->nombre,$record,$fk_column) }}
 	</div>
 </div>
 <div class="row">
 	<div class="col-xs-2 text-right ">
-		{{ Form::label($columns->id_eventos->input, $columns->id_eventos->label) }}
+		{{ Form::label($columns->correo->input, $columns->correo->label) }}
 	</div>
 	<div class="col-xs-10 ">
-		{{ parseToHTML($columns->id_eventos,$record,$fk_column) }}
+		{{ parseToHTML($columns->correo,$record,$fk_column) }}
 	</div>
 </div>
 <div class="row">
 	<div class="col-xs-2 text-right ">
-		{{ Form::label($columns->first_name->input, $columns->first_name->label) }}
+		{{ Form::label($columns->ciudad->input, $columns->ciudad->label) }}
 	</div>
 	<div class="col-xs-10 ">
-		{{ parseToHTML($columns->first_name,$record,$fk_column) }}
+		{{ parseToHTML($columns->ciudad,$record,$fk_column) }}
 	</div>
 </div>
 <div class="row">
 	<div class="col-xs-2 text-right ">
-		{{ Form::label($columns->last_name->input, $columns->last_name->label) }}
+		{{ Form::label($columns->telefono->input, $columns->telefono->label) }}
 	</div>
 	<div class="col-xs-10 ">
-		{{ parseToHTML($columns->last_name,$record,$fk_column) }}
+		{{ parseToHTML($columns->telefono,$record,$fk_column) }}
 	</div>
 </div>
 <div class="row">
 	<div class="col-xs-2 text-right ">
-		{{ Form::label($columns->sex->input, $columns->sex->label) }}
+		{{ Form::label($columns->celular->input, $columns->celular->label) }}
 	</div>
 	<div class="col-xs-10 ">
-		{{ parseToHTML($columns->sex,$record,$fk_column) }}
+		{{ parseToHTML($columns->celular,$record,$fk_column) }}
 	</div>
 </div>
 <div class="row">
 	<div class="col-xs-2 text-right ">
-		{{ Form::label($columns->email->input, $columns->email->label) }}
+		{{ Form::label($columns->mensaje->input, $columns->mensaje->label) }}
 	</div>
 	<div class="col-xs-10 ">
-		{{ parseToHTML($columns->email,$record,$fk_column) }}
-	</div>
-</div>
-<div class="row">
-	<div class="col-xs-2 text-right ">
-		{{ Form::label($columns->last_ip->input, $columns->last_ip->label) }}
-	</div>
-	<div class="col-xs-10 ">
-		{{ parseToHTML($columns->last_ip,$record,$fk_column) }}
-	</div>
-</div>
-<div class="row">
-	<div class="col-xs-2 text-right ">
-		{{ Form::label($columns->ip_mask->input, $columns->ip_mask->label) }}
-	</div>
-	<div class="col-xs-10 ">
-		{{ parseToHTML($columns->ip_mask,$record,$fk_column) }}
-	</div>
-</div>
-<div class="row">
-	<div class="col-xs-2 text-right ">
-		{{ Form::label($columns->status->input, $columns->status->label) }}
-	</div>
-	<div class="col-xs-10 ">
-		{{ parseToHTML($columns->status,$record,$fk_column) }}
+		{{ parseToHTML($columns->mensaje,$record,$fk_column) }}
 	</div>
 </div>
 <div class="row">
