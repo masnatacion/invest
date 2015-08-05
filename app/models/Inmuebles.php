@@ -135,7 +135,7 @@ class Inmuebles extends \Crud {
         //
         "create"    => [],
         "edit"      => [],
-        "index"     => [],
+        "index"     => ["id_inmuebles","nombre","fotografia","status","categoria"],
         "show"      => [],
 
         // "not_in_create" => ["created_at","updated_at"],

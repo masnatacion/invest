@@ -5,7 +5,11 @@ class ContactanosController extends \BaseController {
 
 	public function index(){
 
-	    return \View::make("public.contactanos.contactanos");
+		$contactanos = new \Contactanos();
+		$class = $contactanos->_create();
+
+	    return \View::make("public.contactanos.contactanos")
+	    	->with("record",$class->record);
 	}
 
 

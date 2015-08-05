@@ -8,6 +8,7 @@
 
 					<td> {{ $columns->id_contactanos->label }} </td>
 					<td> {{ $columns->nombre->label }} </td>
+					<td> {{ $columns->apellidos->label }} </td>
 					<td> {{ $columns->correo->label }} </td>
 					<td> {{ $columns->ciudad->label }} </td>
 					<td> {{ $columns->telefono->label }} </td>
@@ -28,6 +29,7 @@
 
 					<td>{{ parseToHTML($columns->id_contactanos,$record,$fk_column) }}</td>
 					<td>{{ parseToHTML($columns->nombre,$record,$fk_column) }}</td>
+					<td>{{ parseToHTML($columns->apellidos,$record,$fk_column) }}</td>
 					<td>{{ parseToHTML($columns->correo,$record,$fk_column) }}</td>
 					<td>{{ parseToHTML($columns->ciudad,$record,$fk_column) }}</td>
 					<td>{{ parseToHTML($columns->telefono,$record,$fk_column) }}</td>

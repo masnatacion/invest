@@ -7,11 +7,8 @@
 				<tr>
 
 					<td> {{ $columns->id_users->label }} </td>
-					<td> {{ $columns->id_roles->label }} </td>
-					<td> {{ $columns->id_eventos->label }} </td>
 					<td> {{ $columns->first_name->label }} </td>
 					<td> {{ $columns->last_name->label }} </td>
-					<td> {{ $columns->sex->label }} </td>
 					<td> {{ $columns->email->label }} </td>
 					<td> {{ $columns->status->label }} </td>
 
@@ -28,11 +25,8 @@
 
 
 					<td>{{ parseToHTML($columns->id_users,$record,$fk_column) }}</td>
-					<td>{{ parseToHTML($columns->id_roles,$record,$fk_column) }}</td>
-					<td>{{ parseToHTML($columns->id_eventos,$record,$fk_column) }}</td>
 					<td>{{ parseToHTML($columns->first_name,$record,$fk_column) }}</td>
 					<td>{{ parseToHTML($columns->last_name,$record,$fk_column) }}</td>
-					<td>{{ parseToHTML($columns->sex,$record,$fk_column) }}</td>
 					<td>{{ parseToHTML($columns->email,$record,$fk_column) }}</td>
 					<td>{{ parseToHTML($columns->status,$record,$fk_column) }}</td>
 

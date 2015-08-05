@@ -5,7 +5,12 @@ class HomeController extends \BaseController {
 
 	public function index(){
 
-	    return \View::make("public.home.home");
+
+		$contactanos = new \Contactanos();
+		$class = $contactanos->_create();
+
+	    return \View::make("public.home.home")
+	    	->with("record",$class->record);
 	}
 
 

@@ -28,6 +28,10 @@
                     </li>
 
                     <li class="">
+                        <a href="{{ getenv('APP_ADMIN_PREFIX') }}/carrusel"><i class="fa fa-play"></i> <span class="nav-label">Carrusel</span></a>
+                    </li>
+
+                    <li class="">
                         <a href="{{ getenv('APP_ADMIN_PREFIX') }}/inmuebles"><i class="fa fa-building-o"></i> <span class="nav-label">Inmuebles</span></a>
                     </li>
 
@@ -43,7 +47,7 @@
                     <li>
                         <a href="#"><i class="fa fa-users"></i> <span class="nav-label">Administración</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse">
-                            <li>{{ HTML::link(getenv('APP_ADMIN_PREFIX').'/usuarios','Usuarios') }}</li>
+                            <li>{{ HTML::link(getenv('APP_ADMIN_PREFIX').'/users','Usuarios') }}</li>
 
                         </ul>
                     </li>
@@ -55,10 +59,6 @@
                     <li>
                         <a href="#"><i class="fa fa-star"></i> <span class="nav-label">Web Site</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse">
-							<li>{{ HTML::link(getenv('APP_ADMIN_PREFIX').'/cms_pages','Content Manager') }}</li>
-							<li>{{ HTML::link(getenv('APP_ADMIN_PREFIX').'/cms_images','Images Manager') }}</li>
-							<li>{{ HTML::link(getenv('APP_ADMIN_PREFIX').'/cms_videos','Video Manager') }}</li>
-
 
                         </ul>
                     </li>

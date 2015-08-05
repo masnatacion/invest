@@ -1,11 +1,11 @@
 <?php
 
-class Contactanos extends \Crud {
+class Carrusel extends \Crud {
 
 
-    protected $primaryKey = 'id_contactanos'; // !important
+    protected $primaryKey = 'id_carrusel'; // !important
 
-    protected $table = 'contactanos';
+    protected $table = 'carrusel';
 
     protected $fillable = [];
 
@@ -97,7 +97,7 @@ class Contactanos extends \Crud {
         // Choose column or columns for the FK to show
         // ["id_roles" => "name"] or ["id_roles" => ["name","status"]]
         //
-        "fk_column" => [],
+        "fk_column" => ["id_inmuebles" => "nombre"],
         //
         // JOINS
         // Remember by default the framework create autojoins when you define id_(table)   
@@ -147,7 +147,7 @@ class Contactanos extends \Crud {
         // Buttons
         // ["print","create","edit","show","delete","search","advance-search"]
 
-        "btn_in_index"  => ["show","delete","search"],
+        // "btn_in_index"  => ["print","create","edit","show","delete","search","advance-search"],
         // "btn_in_show"   => ["print","edit","cancel"],
         // "btn_in_create" => ["create","cancel"],
         // "btn_in_edit"   => ["edit","cancel"],

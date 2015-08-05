@@ -1,0 +1,29 @@
+@extends("crud.layout-form")
+
+@section("form")
+
+
+
+<div class="form-group @if ($errors->has('id_inmueble')) has-error @endif">
+
+ {{ Form::label("remotecombo", "Inmueble") }}
+   
+      {{ Form::remotecombo("id_inmueble",$record->id_inmueble,["table"=>$model,"class" => "form-control","placeholder"=>"Inmueble"] ); }}
+    
+ <span class="help-block">{{ $errors->first('id_inmueble') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('status')) has-error @endif">
+
+ {{ Form::label("radiogroup", "Status") }}
+   
+      {{ Form::radiogroup("status",$record->status,[],$columns->status->data); }}
+    
+ <span class="help-block">{{ $errors->first('status') }}</span>
+</div>
+
+     
+
+@stop
+
+

@@ -13,40 +13,22 @@
  <span class="help-block">{{ $errors->first('id_roles') }}</span>
 </div>
 
-<div class="form-group @if ($errors->has('id_eventos')) has-error @endif">
-
- {{ Form::label("remotecombo", "Evento") }}
-   
-      {{ Form::remotecombo("id_eventos",$record->id_eventos,["table"=>$model,"class" => "form-control","placeholder"=>"Evento"] ); }}
-    
- <span class="help-block">{{ $errors->first('id_eventos') }}</span>
-</div>
-
 <div class="form-group @if ($errors->has('first_name')) has-error @endif">
 
- {{ Form::label("text", "First name") }}
+ {{ Form::label("text", "Nombre") }}
    
-      {{ Form::text("first_name",$record->first_name,["class" => "form-control","placeholder"=>"First name"]); }}
+      {{ Form::text("first_name",$record->first_name,["class" => "form-control","placeholder"=>"Nombre"]); }}
     
  <span class="help-block">{{ $errors->first('first_name') }}</span>
 </div>
 
 <div class="form-group @if ($errors->has('last_name')) has-error @endif">
 
- {{ Form::label("text", "Last name") }}
+ {{ Form::label("text", "Apellidos") }}
    
-      {{ Form::text("last_name",$record->last_name,["class" => "form-control","placeholder"=>"Last name"]); }}
+      {{ Form::text("last_name",$record->last_name,["class" => "form-control","placeholder"=>"Apellidos"]); }}
     
  <span class="help-block">{{ $errors->first('last_name') }}</span>
-</div>
-
-<div class="form-group @if ($errors->has('sex')) has-error @endif">
-
- {{ Form::label("radiogroup", "Sex") }}
-   
-      {{ Form::radiogroup("sex",$record->sex,[],$columns->sex->data); }}
-    
- <span class="help-block">{{ $errors->first('sex') }}</span>
 </div>
 
 <div class="form-group @if ($errors->has('email')) has-error @endif">
@@ -65,15 +47,6 @@
       {{ Form::text("password",$record->password,["class" => "form-control","placeholder"=>"Password"]); }}
     
  <span class="help-block">{{ $errors->first('password') }}</span>
-</div>
-
-<div class="form-group @if ($errors->has('ip_mask')) has-error @endif">
-
- {{ Form::label("text", "Ip mask") }}
-   
-      {{ Form::text("ip_mask",$record->ip_mask,["class" => "form-control","placeholder"=>"Ip mask"]); }}
-    
- <span class="help-block">{{ $errors->first('ip_mask') }}</span>
 </div>
 
 <div class="form-group @if ($errors->has('status')) has-error @endif">

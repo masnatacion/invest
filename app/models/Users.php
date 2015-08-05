@@ -86,12 +86,12 @@ class Users extends Crud implements UserInterface, RemindableInterface {
     //
 
     protected $crud = [
-        "title"     => "Users",
+        "title"     => "Usuarios",
         //
         //  Rename the columns names.
         //  ["first_name" => "First Name"]
         // 
-        "labels"    => [],
+        "labels"    => ["first_name"=>"Nombre","last_name"=>"Apellidos"],
         //
         // Replace default inputs by column
         // ["first_name" => "text"] 
@@ -102,7 +102,7 @@ class Users extends Crud implements UserInterface, RemindableInterface {
         // Choose column or columns for the FK to show
         // ["id_roles" => "name"] or ["id_roles" => ["name","status"]]
         //
-        "fk_column" => [],
+        "fk_column" => ["id_roles" => "name"],
         //
         // JOINS
         // Remember by default the framework create autojoins when you define id_(table)   
@@ -174,7 +174,7 @@ class Users extends Crud implements UserInterface, RemindableInterface {
         "not_in_create"   => ["remember_token","last_ip","created_at","created_by","updated_at","updated_by"],
         "not_in_edit"     => ["remember_token","last_ip","created_at","created_by","updated_at"],
         "not_in_show"     => ["password","remember_token"],
-        "not_in_index"    => ["id_agency","ip_mask","last_ip","password","remember_token","created_at","updated_at"],
+        "not_in_index"    => ["id_roles","password","remember_token","created_at","updated_at"],
         
         //
         // Buttons

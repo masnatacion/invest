@@ -16,6 +16,7 @@ class CreateContactanosTable extends Migration {
 		{
 			$table->increments('id_contactanos');
 			$table->string('nombre', 160);
+			$table->string('apellidos', 80)->nullable();
 			$table->string('correo', 160);
 			$table->string('ciudad', 80);
 			$table->string('telefono', 160)->nullable();

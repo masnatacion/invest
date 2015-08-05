@@ -9,18 +9,8 @@
 					<td> {{ $columns->id_inmuebles->label }} </td>
 					<td> {{ $columns->status->label }} </td>
 					<td> {{ $columns->nombre->label }} </td>
-					<td> {{ $columns->direccion->label }} </td>
 					<td> {{ $columns->categoria->label }} </td>
-					<td> {{ $columns->estado->label }} </td>
-					<td> {{ $columns->municipio->label }} </td>
-					<td> {{ $columns->superficie_terreno->label }} </td>
-					<td> {{ $columns->construccion->label }} </td>
-					<td> {{ $columns->estacionamiento->label }} </td>
-					<td> {{ $columns->local_disponible->label }} </td>
-					<td> {{ $columns->informes->label }} </td>
 					<td> {{ $columns->fotografia->label }} </td>
-					<td> {{ $columns->plano_aquitectonico->label }} </td>
-					<td> {{ $columns->google_maps->label }} </td>
 
 
 					@include("crud.index-column-buttons")
@@ -37,18 +27,8 @@
 					<td>{{ parseToHTML($columns->id_inmuebles,$record,$fk_column) }}</td>
 					<td>{{ parseToHTML($columns->status,$record,$fk_column) }}</td>
 					<td>{{ parseToHTML($columns->nombre,$record,$fk_column) }}</td>
-					<td>{{ parseToHTML($columns->direccion,$record,$fk_column) }}</td>
 					<td>{{ parseToHTML($columns->categoria,$record,$fk_column) }}</td>
-					<td>{{ parseToHTML($columns->estado,$record,$fk_column) }}</td>
-					<td>{{ parseToHTML($columns->municipio,$record,$fk_column) }}</td>
-					<td>{{ parseToHTML($columns->superficie_terreno,$record,$fk_column) }}</td>
-					<td>{{ parseToHTML($columns->construccion,$record,$fk_column) }}</td>
-					<td>{{ parseToHTML($columns->estacionamiento,$record,$fk_column) }}</td>
-					<td>{{ parseToHTML($columns->local_disponible,$record,$fk_column) }}</td>
-					<td>{{ parseToHTML($columns->informes,$record,$fk_column) }}</td>
 					<td>{{ parseToHTML($columns->fotografia,$record,$fk_column) }}</td>
-					<td>{{ parseToHTML($columns->plano_aquitectonico,$record,$fk_column) }}</td>
-					<td>{{ parseToHTML($columns->google_maps,$record,$fk_column) }}</td>
 
 
 					@include("crud.index-buttons")

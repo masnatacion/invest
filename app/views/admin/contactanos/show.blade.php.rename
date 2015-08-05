@@ -22,6 +22,14 @@
 </div>
 <div class="row">
 	<div class="col-xs-2 text-right ">
+		{{ Form::label($columns->apellidos->input, $columns->apellidos->label) }}
+	</div>
+	<div class="col-xs-10 ">
+		{{ parseToHTML($columns->apellidos,$record,$fk_column) }}
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-2 text-right ">
 		{{ Form::label($columns->correo->input, $columns->correo->label) }}
 	</div>
 	<div class="col-xs-10 ">

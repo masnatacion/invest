@@ -13,6 +13,15 @@
  <span class="help-block">{{ $errors->first('nombre') }}</span>
 </div>
 
+<div class="form-group @if ($errors->has('apellidos')) has-error @endif">
+
+ {{ Form::label("text", "Apellidos") }}
+   
+      {{ Form::text("apellidos",$record->apellidos,["class" => "form-control","placeholder"=>"Apellidos"]); }}
+    
+ <span class="help-block">{{ $errors->first('apellidos') }}</span>
+</div>
+
 <div class="form-group @if ($errors->has('correo')) has-error @endif">
 
  {{ Form::label("text", "Correo") }}
