@@ -4,7 +4,7 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
     <head>
-        <base href="{{ asset("") }}">
+        <base href="{{ asset("") }}/v2">
         <title>Admin :: {{ getenv('APP_TITLE') }}</title>
         <meta charset="utf-8">
         
@@ -48,68 +48,68 @@
         <?php 
 
             $js =  [
-                    '/js/vendor/jquery-1.9.1.min.js',
-                    '/js/vendor/jquery.plugin.min.js',
+                    '/v2/js/vendor/jquery-1.9.1.min.js',
+                    '/v2/js/vendor/jquery.plugin.min.js',
 
-                    '/js/vendor/bootstrap.min.js',
-                    '/js/vendor/bootstrap-toggle.min.js',
-                    '/js/vendor/summernote.js',
-                    '/js/vendor/select2.full.js',
+                    '/v2/js/vendor/bootstrap.min.js',
+                    '/v2/js/vendor/bootstrap-toggle.min.js',
+                    '/v2/js/vendor/summernote.js',
+                    '/v2/js/vendor/select2.full.js',
 
-                    '/js/vendor/jquery.quicksearch.js',
-                    '/js/vendor/jquery.multi-select.js',
+                    '/v2/js/vendor/jquery.quicksearch.js',
+                    '/v2/js/vendor/jquery.multi-select.js',
 
-                    '/js/vendor/js-webshim/minified/polyfiller.js',
-                    '/js/vendor/jasny-bootstrap.min.js',
-                    '/js/vendor/bootstrap-confirmation.js',
-                    '/js/vendor/bootstrap-combobox.js',
-                    '/js/vendor/bootstrap-switch.min.js',
-                    '/js/vendor/moment-with-locales.js',
-                    '/js/vendor/bootstrap-datetimepicker.js',
-                    '/js/vendor/bootstrap-scrollertab.js',
-                    '/js/vendor/bootstrap-formajax.js',
+                    '/v2/js/vendor/js-webshim/minified/polyfiller.js',
+                    '/v2/js/vendor/jasny-bootstrap.min.js',
+                    '/v2/js/vendor/bootstrap-confirmation.js',
+                    '/v2/js/vendor/bootstrap-combobox.js',
+                    '/v2/js/vendor/bootstrap-switch.min.js',
+                    '/v2/js/vendor/moment-with-locales.js',
+                    '/v2/js/vendor/bootstrap-datetimepicker.js',
+                    '/v2/js/vendor/bootstrap-scrollertab.js',
+                    '/v2/js/vendor/bootstrap-formajax.js',
 
-                    '/js/vendor/jquery.cookie.js',
+                    '/v2/js/vendor/jquery.cookie.js',
 
-                    '/js/vendor/plugins.js',
-                    '/js/vendor/main.js',
+                    '/v2/js/vendor/plugins.js',
+                    '/v2/js/vendor/main.js',
 
 
                     // INSPINIA
-                    '/js/admin/inspinia/plugins/metisMenu/jquery.metisMenu.js',
-                    '/js/admin/inspinia/plugins/slimscroll/jquery.slimscroll.min.js',
+                    '/v2/js/admin/inspinia/plugins/metisMenu/jquery.metisMenu.js',
+                    '/v2/js/admin/inspinia/plugins/slimscroll/jquery.slimscroll.min.js',
 
                     // <!-- Flot -->
-                    // '/js/admin/inspinia/plugins/flot/jquery.flot.js',
-                    // '/js/admin/inspinia/plugins/flot/jquery.flot.tooltip.min.js',
-                    // '/js/admin/inspinia/plugins/flot/jquery.flot.spline.js',
-                    // '/js/admin/inspinia/plugins/flot/jquery.flot.resize.js',
-                    // '/js/admin/inspinia/plugins/flot/jquery.flot.pie.js',
+                    // '/v2/js/admin/inspinia/plugins/flot/jquery.flot.js',
+                    // '/v2/js/admin/inspinia/plugins/flot/jquery.flot.tooltip.min.js',
+                    // '/v2/js/admin/inspinia/plugins/flot/jquery.flot.spline.js',
+                    // '/v2/js/admin/inspinia/plugins/flot/jquery.flot.resize.js',
+                    // '/v2/js/admin/inspinia/plugins/flot/jquery.flot.pie.js',
 
                     // <!-- Peity -->
-                    // '/js/admin/inspinia/plugins/peity/jquery.peity.min.js',
-                    // '/js/admin/inspinia/demo/peity-demo.js',
+                    // '/v2/js/admin/inspinia/plugins/peity/jquery.peity.min.js',
+                    // '/v2/js/admin/inspinia/demo/peity-demo.js',
 
                     // <!-- Custom and plugin javascript -->
-                    '/js/admin/inspinia/inspinia.js',
-                    '/js/admin/inspinia/plugins/pace/pace.min.js',
+                    '/v2/js/admin/inspinia/inspinia.js',
+                    '/v2/js/admin/inspinia/plugins/pace/pace.min.js',
 
                     // <!-- jQuery UI -->
-                    // '/js/admin/inspinia/plugins/jquery-ui/jquery-ui.min.js',
+                    // '/v2/js/admin/inspinia/plugins/jquery-ui/jquery-ui.min.js',
 
                     // <!-- GITTER -->
-                    // '/js/admin/inspinia/plugins/gritter/jquery.gritter.min.js',
+                    // '/v2/js/admin/inspinia/plugins/gritter/jquery.gritter.min.js',
 
                     // <!-- Sparkline -->
-                    //'/js/admin/inspinia/plugins/sparkline/jquery.sparkline.min.js',
+                    //'/v2/js/admin/inspinia/plugins/sparkline/jquery.sparkline.min.js',
 
                     // // <!-- Sparkline demo data  -->
-                    // '/js/admin/inspinia/demo/sparkline-demo.js',
+                    // '/v2/js/admin/inspinia/demo/sparkline-demo.js',
 
                     // // <!-- Toastr -->
-                    // '/js/admin/inspinia/plugins/toastr/toastr.min.js',
+                    // '/v2/js/admin/inspinia/plugins/toastr/toastr.min.js',
 
-                    '/js/admin/permissions.js'
+                    '/v2/js/admin/permissions.js'
 
                     ]; 
         ?>

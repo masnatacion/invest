@@ -5,7 +5,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
     <head>
         <base href="{{ asset("") }}">
-        <title>{{ getenv('APP_TITLE') }}</title>
+        <title>{{ getenv('APP_TITLE') }}/v2</title>
         <meta charset="utf-8">
         
         <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
@@ -46,26 +46,26 @@
         <?php 
 
             $js =  [
-                     '/js/vendor/jquery-1.9.1.min.js',
-                     '/js/vendor/jquery.plugin.min.js',
+                     '/v2/js/vendor/jquery-1.9.1.min.js',
+                     '/v2/js/vendor/jquery.plugin.min.js',
 
-                    '/js/vendor/bootstrap.min.js',
+                    '/v2/js/vendor/bootstrap.min.js',
 
-                    '/js/vendor/jquery.cookie.js',
+                    '/v2/js/vendor/jquery.cookie.js',
 
-                    '/js/vendor/js-webshim/minified/polyfiller.js',
-                    '/js/vendor/jasny-bootstrap.min.js',
-                    '/js/vendor/bootstrap-confirmation.js',
-                    '/js/vendor/bootstrap-combobox.js',
-                    '/js/vendor/bootstrap-switch.min.js',
-                    '/js/vendor/moment-with-locales.js',
-                    '/js/vendor/bootstrap-datetimepicker.js',
-                    '/js/vendor/bootstrap-scrollertab.js',
+                    '/v2/js/vendor/js-webshim/minified/polyfiller.js',
+                    '/v2/js/vendor/jasny-bootstrap.min.js',
+                    '/v2/js/vendor/bootstrap-confirmation.js',
+                    '/v2/js/vendor/bootstrap-combobox.js',
+                    '/v2/js/vendor/bootstrap-switch.min.js',
+                    '/v2/js/vendor/moment-with-locales.js',
+                    '/v2/js/vendor/bootstrap-datetimepicker.js',
+                    '/v2/js/vendor/bootstrap-scrollertab.js',
 
-                    '/js/vendor/plugins.js',
-                    '/js/vendor/main.js',
+                    '/v2/js/vendor/plugins.js',
+                    '/v2/js/vendor/main.js',
 
-                    '/js/admin/permissions.js'
+                    '/v2/js/admin/permissions.js'
 
                     ]; 
         ?>
