@@ -1,1 +1,3 @@
-mapa.blade.php
+<div class="mapa">
+
+</div>
