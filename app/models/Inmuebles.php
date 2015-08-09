@@ -92,7 +92,10 @@ class Inmuebles extends \Crud {
         // ["first_name" => "text"] 
         // "radiogroup","radios","editor","toggle","html","text", "hidden", "digit", "textarea", "password", "email","datetime","date","time","select","autocomplete","money","currency","file","document","audio","video","zip"
         //
-        "inputs"    => [],
+        "inputs"    => [
+                        "plano_aquitectonico" => "file",
+                        "fotografia" => "file"
+                    ],
         // 
         // Choose column or columns for the FK to show
         // ["id_roles" => "name"] or ["id_roles" => ["name","status"]]

@@ -1,8 +1,30 @@
+<a name="contactanos" style="hidden"></a>
 <div class="contactanos">
 
-	<div class="container">
 
-		<div class="padding-lg">
+    <!-- if there are creation errors, they will show here -->
+    @if ($errors->all())
+      <div class="alert alert-danger" role="alert">
+        {{ HTML::ul($errors->all()) }}
+      </div>
+    @endif
+
+    <!-- will be used to show any messages -->
+    @if (Session::has('success'))
+      <div class="alert alert-success" role="alert">{{ Session::get('success') }} :)</div>
+    @endif
+
+    @if (Session::has('error'))
+      <div class="alert alert-danger" role="alert">
+        {{ Session::get('error') }} :(
+      </div>
+    @endif
+
+
+	<div class="">
+
+		{{ Form::open( array('url' => array('contactanos'), 'method' => 'POST','files'  => true)) }}
+		<div class="padding-lg no-padding-xs">
 
 
 			<h1>Contactanos</h1>
@@ -112,8 +134,10 @@
 
 				</div>
 
-
+				{{ Form::submit('Contactanos', array('class' => 'btn btn-lg btn-danger margin-bottom-lg')) }}
 		</div>
+
+		{{ Form::close() }}
 
 	
 

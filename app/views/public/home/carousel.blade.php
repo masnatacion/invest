@@ -8,6 +8,7 @@
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
     <div class="item active">
+      
       <img src="./img/carrusel.jpg" alt="...">
       <div class="carousel-caption">
         ...

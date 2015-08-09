@@ -56,12 +56,12 @@
 
 
 
-                    <li>
+<!--                     <li>
                         <a href="#"><i class="fa fa-star"></i> <span class="nav-label">Web Site</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse">
 
                         </ul>
-                    </li>
+                    </li> -->
 
 
 

@@ -113,7 +113,7 @@
 
                     ]; 
         ?>
-        {{ Minify::javascript($js,['js_build_path'=>'js/']) }}
+        {{ Minify::javascript($js,['js_build_path'=>'v2/js/']) }}
 
 
 

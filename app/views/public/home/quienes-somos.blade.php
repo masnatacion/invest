@@ -1,4 +1,6 @@
-<div class="quienes-somos padding-lg">
+<a name="quienes-somos" style="hidden"></a>
+
+<div class="quienes-somos padding-lg no-padding-xs">
 	<div class="padding-lg">
 		<h2 class="text-center margin-bottom-lg">¿Quiénes somos?</h2>
 		<div class="row padding-top-lg">
