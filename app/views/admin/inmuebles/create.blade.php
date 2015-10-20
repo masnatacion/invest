@@ -3,6 +3,14 @@
 @section("form")
 
 
+<div class="form-group @if ($errors->has('fotografia')) has-error @endif">
+
+ {{ Form::label("text", "Fotografia") }}
+   
+      {{ Form::filepicker("fotografia",$record->fotografia,["class" => "form-control","placeholder"=>"Fotografia"]); }}
+    
+ <span class="help-block">{{ $errors->first('fotografia') }}</span>
+</div>
 
 <div class="form-group @if ($errors->has('status')) has-error @endif">
 
@@ -22,13 +30,22 @@
  <span class="help-block">{{ $errors->first('nombre') }}</span>
 </div>
 
-<div class="form-group @if ($errors->has('direccion')) has-error @endif">
+<div class="form-group @if ($errors->has('lugar')) has-error @endif">
 
- {{ Form::label("textarea", "Direccion") }}
+      {{ Form::label("text", "Dirección") }}
+
+      {{ Form::text("direccion",$record->direccion,["id"=>"geocomplete","class" => "form-control","placeholder"=>"Dirección"]); }}
    
-      {{ Form::textarea("direccion", $record->direccion,["class" => "form-control","placeholder"=>"Direccion"]) }}
-    
- <span class="help-block">{{ $errors->first('direccion') }}</span>
+
+      <span class="help-block">{{ $errors->first('direccion') }}</span>
+
+      {{ Form::hidden('latitud', null, array('data-geo' => 'lat','class' => 'form-control')) }}
+      {{ Form::hidden('longitud', null, array('data-geo' => 'lng','class' => 'form-control')) }}
+      {{ Form::hidden('estado', null, array('data-geo' => 'administrative_area_level_1','class' => 'form-control')) }}
+      {{ Form::hidden('pais', null, array('data-geo' => 'country','class' => 'form-control')) }}
+
+      <div class="map_canvas" style="width:100%;height:400px"></div>
+
 </div>
 
 <div class="form-group @if ($errors->has('categoria')) has-error @endif">
@@ -40,23 +57,7 @@
  <span class="help-block">{{ $errors->first('categoria') }}</span>
 </div>
 
-<div class="form-group @if ($errors->has('estado')) has-error @endif">
 
- {{ Form::label("text", "Estado") }}
-   
-      {{ Form::text("estado",$record->estado,["class" => "form-control","placeholder"=>"Estado"]); }}
-    
- <span class="help-block">{{ $errors->first('estado') }}</span>
-</div>
-
-<div class="form-group @if ($errors->has('municipio')) has-error @endif">
-
- {{ Form::label("text", "Municipio") }}
-   
-      {{ Form::text("municipio",$record->municipio,["class" => "form-control","placeholder"=>"Municipio"]); }}
-    
- <span class="help-block">{{ $errors->first('municipio') }}</span>
-</div>
 
 <div class="form-group @if ($errors->has('superficie_terreno')) has-error @endif">
 
@@ -103,34 +104,56 @@
  <span class="help-block">{{ $errors->first('informes') }}</span>
 </div>
 
-<div class="form-group @if ($errors->has('fotografia')) has-error @endif">
 
- {{ Form::label("file", "Fotografia") }}
-   
-      {{ Form::filepicker("fotografia",$record->fotografia) }}
-    
- <span class="help-block">{{ $errors->first('fotografia') }}</span>
-</div>
 
 <div class="form-group @if ($errors->has('plano_aquitectonico')) has-error @endif">
 
- {{ Form::label("file", "Plano aquitectonico") }}
+ {{ Form::label("text", "Plano aquitectonico") }}
    
-      {{ Form::filepicker("plano_aquitectonico",$record->plano_aquitectonico) }}
+      {{ Form::text("plano_aquitectonico",$record->plano_aquitectonico,["class" => "form-control","placeholder"=>"Plano aquitectonico"]); }}
     
  <span class="help-block">{{ $errors->first('plano_aquitectonico') }}</span>
 </div>
 
-<div class="form-group @if ($errors->has('google_maps')) has-error @endif">
-
- {{ Form::label("textarea", "Google maps") }}
-   
-      {{ Form::textarea("google_maps", $record->google_maps,["class" => "form-control","placeholder"=>"Google maps"]) }}
-    
- <span class="help-block">{{ $errors->first('google_maps') }}</span>
-</div>
 
      
+
+@stop
+
+
+@section("javascript")
+
+<script type="text/javascript">
+
+
+            
+      $(function(){
+        $("#geocomplete").geocomplete({
+          map                       : ".map_canvas",
+          details                   : "form .form-group",
+          detailsAttribute  : "data-geo",
+          markerOptions: {
+            draggable: true
+          }
+
+           @if(!empty($record->latitud))
+            ,location : [{{ $record->latitud }},{{ $record->longitud }}]
+          @endif
+          
+        });
+        
+        $("#geocomplete").bind("geocode:dragged", function(event, latLng){
+          $("input[name=lat]").val(latLng.lat());
+          $("input[name=lng]").val(latLng.lng());
+        });
+        
+
+
+      });
+
+
+</script>
+
 
 @stop
 

@@ -9,12 +9,10 @@ class BaseModel extends \Eloquent {
 	{
 
 		$table 	   = $this->getTable();
-		$sql   	   = "SHOW COLUMNS FROM $table WHERE TYPE LIKE 'enum%'";
+		$sql   	   = "SHOW COLUMNS FROM $table WHERE TYPE LIKE 'enum%' or TYPE LIKE 'set%'";
 		$enums 	   = [];
 
-	    $table_data=\Cache::remember($table."_show_columns_enum", 60, function() use ($sql) {
-	        return \DB::select(DB::raw($sql));
-	    });
+	    $table_data= \DB::select(DB::raw($sql));
 
 		foreach ($table_data as $column) 
 			$enums[$column->Field] =  $this->getEnumValues($column->Type);
@@ -25,14 +23,14 @@ class BaseModel extends \Eloquent {
 	public function getEnumValues($type)
 	{
 
-	  preg_match('/^enum\((.*)\)$/', $type, $matches);
+	  preg_match('/(enum|set)\((.*)\)$/', $type, $matches);
 	  $enum = array();
 	  
 	  $enums = array();
 
-	  if(isset($matches[1]))
+	  if(isset($matches[2]))
 	  {
-		  foreach( explode(',', $matches[1]) as $value )
+		  foreach( explode(',', $matches[2]) as $value )
 		  {
 
 		    $v = trim( $value, "'" );

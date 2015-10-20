@@ -42,11 +42,21 @@ class CrudBase extends \BaseModel {
 
         $this::creating(function($table) use( $me )
         {
-            if (\Schema::hasColumn($me->getTable(), "created_by"))
-                $table->created_by = \Auth::admin()->id() ? \Auth::admin()->id() : 0; 
 
-            if (\Schema::hasColumn($me->getTable(), "updated_by"))
-                $table->updated_by = 0; 
+            if(\Auth::admin()->check() && \Request::is(getenv('APP_ADMIN_PREFIX').'/*') )
+            {
+                $table->created_by = \Auth::admin()->id() ? \Auth::admin()->id() : 0; 
+                $table->internal_use = "Yes";
+                $table->created_table = Auth::admin()->get()->getTable();
+
+            }elseif(\Auth::customer()->check())
+            {
+                $table->created_by = \Auth::customer()->id() ? \Auth::customer()->id() : 0; 
+                $table->internal_use = "No";
+                $table->created_table = Auth::customer()->get()->getTable();
+            }
+
+
         });
 
         $this::created(function($table) use( $me )
@@ -54,23 +64,53 @@ class CrudBase extends \BaseModel {
             $id =  $table->{$me->getKeyName()};
             if (\Auth::admin()->check() and $id)
                 $me->logfile($id,"created");
+
+            \Event::fire('created',["me" => $me,"table"=> $me->getTable(),"record"=>$table]);
         });
 
         $this::updating(function($table) use( $me )
         {
-            if (\Schema::hasColumn($me->getTable(), "updated_by"))
+            if(\Auth::admin()->check() && \Request::is(getenv('APP_ADMIN_PREFIX').'/*') )
+            {
                 $table->updated_by = \Auth::admin()->id() ? \Auth::admin()->id() : 0 ; 
+                $table->updated_table = Auth::admin()->get()->getTable();
+                
+            }elseif(\Auth::customer()->check())
+            {
+                $table->updated_by = \Auth::customer()->id() ? \Auth::customer()->id() : 0 ; 
+                $table->updated_table = Auth::customer()->get()->getTable();
+            }
+
+
+        });
+
+        $this::updated(function($table) use( $me )
+        {
+            \Event::fire('created',["me" => $me,"table"=> $me->getTable(),"record"=>$table]);
         });
 
         $this::deleting(function($table) use( $me )
         {
 
-            if (\Schema::hasColumn($me->getTable(), "deleted_by"))
+            if(\Auth::admin()->check() && \Request::is(getenv('APP_ADMIN_PREFIX').'/*') )
             {
                 $table->deleted_by = \Auth::admin()->id() ? \Auth::admin()->id() : 0 ; 
-                $table->save();
+                $table->deleted_table = Auth::admin()->get()->getTable();
+                
+            }elseif(\Auth::customer()->check())
+            {
+                $table->deleted_by = \Auth::customer()->id() ? \Auth::customer()->id() : 0 ; 
+                $table->deleted_table = Auth::customer()->get()->getTable();
             }
+
+
+            $table->save();
             
+        });
+
+        $this::deleted(function($table) use( $me )
+        {
+            \Event::fire('deleted',["me" => $me,"table"=> $me->getTable(),"record"=>$table]);
         });
 
 
@@ -89,8 +129,8 @@ class CrudBase extends \BaseModel {
         return create($this,$inputs,$validations);
     }
 
-    public function _update($id,$inputs = [],$validations = []){
-        return create($this,$id,$inputs,$validations);
+    public function _update($id,$inputs = [],$validations = [],$record=null){
+        return update($this,$id,$inputs,$validations,$record);
     }
 
 
@@ -133,7 +173,7 @@ class CrudBase extends \BaseModel {
      
                                 $value = isset($_COOKIE[$table]) ? $_COOKIE[$table] : "";
                                 
-                                if($value && isset($user->$table))
+                                if($value && isset($user->$table) && $value !="undefined")
                                 {
                                     $whereIn = explode(",", $user->$table);
                                     $value = $value ? [$value] : $whereIn;
@@ -273,7 +313,7 @@ class CrudBase extends \BaseModel {
     public function beforeShow(&$params){}
 
 
-    public $default_crud = [
+    protected $default_crud = [
         //
         // Title
         //
@@ -359,9 +399,9 @@ class CrudBase extends \BaseModel {
         "index"     => [],
         "show"      => [],
 
-        "not_in_create" => ["created_by","updated_by","created_at","updated_at","deleted_at","deleted_by"],
-        "not_in_edit"   => ["created_by","updated_by","created_at","updated_at","deleted_at","deleted_by"],
-        "not_in_index"  => ["created_by","updated_by","created_at","updated_at","deleted_at","deleted_by"],
+        "not_in_create" => ["internal_use","created_table","updated_table","deleted_table","created_by","updated_by","created_at","updated_at","deleted_at","deleted_by"],
+        "not_in_edit"   => ["internal_use","created_table","updated_table","deleted_table","created_by","updated_by","created_at","updated_at","deleted_at","deleted_by"],
+        "not_in_index"  => ["internal_use","created_table","updated_table","deleted_table","created_by","updated_by","created_at","updated_at","deleted_at","deleted_by"],
         "not_in_show"   => [],
 
         //
@@ -386,7 +426,7 @@ class CrudBase extends \BaseModel {
         "zip"       => ["zip"]
     ];
 
-    protected $inputTypes = ["remotemultiple","remotemultiple","multiple","radiogroup","radios","editor","toggle","html","text", "hidden", "digit", "textarea", "password", "email","datetime","date","time","select","autocomplete","money","currency","file","document","audio","video","zip"];
+    protected $inputTypes = ["cropper","remotemultiple","remotemultiple","multiple","radiogroup","radios","editor","toggle","html","text", "hidden", "digit", "textarea", "password", "email","datetime","date","time","select","enum","autocomplete","money","currency","file","document","audio","video","zip"];
 
     protected $inputColumTypes = [
         "boolean"       => "text",
@@ -396,6 +436,7 @@ class CrudBase extends \BaseModel {
         "text"          => "textarea",
         "string"        => "text",
         "enum"          => "radiogroup",
+        "simplearray"   => "radiogroup",
         "date"          => "date",
         "datetime"      => "datetime",
         "time"          => "time",
@@ -431,7 +472,7 @@ class CrudBase extends \BaseModel {
         if($action == "edit")
             return $value;
         else
-            return "<a href='mailto:".$value."'>".$value."</a>";
+            return '<a href="mailto:'.$value.'">'.$value.'</a>';
     }
 
     public function created_by_record()
@@ -443,7 +484,40 @@ class CrudBase extends \BaseModel {
     {
         return $this->belongsTo('Users', 'updated_by', 'id_users');
     }
+
+    public function deleted_by_record()
+    {
+        return $this->belongsTo('Users', 'updated_by', 'id_users');
+    }
     
+    //customer
+    public function created_by_customer_record()
+    {
+        $multi = \Config::get('auth.multi');
+        $table = $multi["customer"]["table"];
+        $model = toModel($table);
+
+        return $this->belongsTo($model, 'created_by', 'id_'.$table);
+    }
+
+    public function updated_by_customer_record()
+    {
+        $multi = \Config::get('auth.multi');
+        $table = $multi["customer"]["table"];
+        $model = toModel($table);
+
+        return $this->belongsTo($model, 'created_by', 'id_'.$table);
+    }
+
+    public function deleted_by_customer_record()
+    {
+        $multi = \Config::get('auth.multi');
+        $table = $multi["customer"]["table"];
+        $model = toModel($table);
+
+        return $this->belongsTo($model, 'created_by', 'id_'.$table);
+    }
+
 
     protected function getPathView($name,$default="tabs.default-tab")
     {
@@ -471,6 +545,7 @@ class CrudBase extends \BaseModel {
         $class     = new $className();
 
         $columns = $class->getColumns();
+
         $not_in_index = [];
 
         foreach ($columns as $column) {
@@ -481,10 +556,13 @@ class CrudBase extends \BaseModel {
 
         $not_in_index[] = "updated_at";
 
+        $multi = \Config::get('auth.multi');
+        $customer = $multi["customer"]["table"];
 
         $arguments = [
-            "fk_column"    => ["created_by" => ["id_users","first_name","last_name"]],
-            "not_in_index" => $not_in_index
+            "fk_column" => ["created_by" => ["id_".$customer,"nombre","apellidos","id_users","first_name","last_name"]],
+            "labels"    => ["attachment"=> "Clip","created_by"=>"User","created_at"=>"Date"],
+            "index"     => [$class->getKeyName(),"created_by","created_at","type","notes","attachment"]
         ];
 
         return $this->tab($table,$id,$arguments);
@@ -494,7 +572,15 @@ class CrudBase extends \BaseModel {
     public function logs($id)
     {
         $table = "logfile";
-        return $this->tab($table,$id);
+        $logs = new \Logfile();
+
+
+        $arguments = [
+            "labels"       => ["created_by"=>"User","created_at"=>"Date"],
+            "fk_column"    => ["created_by" => ["id_users","first_name","last_name"]],
+            "index"        => [$logs->getKeyName(),"created_by","created_at","action"]
+        ];
+        return $this->tab($table,$id,$arguments);
     }
 
 
@@ -563,6 +649,7 @@ class CrudBase extends \BaseModel {
         $fk_column = $class->getCrud("fk_column");
 
         $records = $class;
+        $sort_order= $class->getCrud("sort_order");
 
         $current = new $current_class_name();
         $key_name = $current->getKeyName();
@@ -597,7 +684,34 @@ class CrudBase extends \BaseModel {
         }
             
 
+        if(count($sort_order) > 0)
+        {
+            foreach ($sort_order as $column => $order)
+            {
+                if(is_numeric($column))
+                {
+                    $column = $order;
+                    $order  = "ASC";
+                }
+
+                $order = strtoupper($order);
+
+                if($order!="DESC" and $order!="ASC")
+                    $order  = "ASC";
+
+                $records = $records->orderBy($column, $order);
+                    
+            }
+            
+        }else
+        {
+            $records = $records->orderBy($class->getKeyName(), "DESC");
+        }
+
         $records = $records->paginate(10);
+
+
+
 
         $columns  = $class->getColumnsByView("index");
 
@@ -606,6 +720,9 @@ class CrudBase extends \BaseModel {
 
         if($viewName == "notes")
             $default_view = "tabs.notes";
+
+        if($viewName == "logs")
+            $default_view = "tabs.logs";
 
         if($view)
             $default_view = "tabs.".$view;
@@ -861,7 +978,9 @@ class CrudBase extends \BaseModel {
 
 
         $enums   = $this->getEnumTable();   
+        
         $record  = [];
+
 
 
 
@@ -879,7 +998,7 @@ class CrudBase extends \BaseModel {
 
             $data   = [];
 
-            if($type == "enum")
+            if($type == "enum" or $type == "simplearray")
             {
                 if(array_key_exists($column->getName(), $enums))
                 {
@@ -968,8 +1087,7 @@ class CrudBase extends \BaseModel {
             }
                 
 
-            if($name == "file" || $name =="attachment")
-                $input = "file";
+
 
             //replace default input
 
@@ -979,6 +1097,11 @@ class CrudBase extends \BaseModel {
                 if(in_array($crud_inputs[$name], $this->inputTypes))
                     $input = $crud_inputs[$name];
             }
+
+
+            if($name == "file" || $name =="attachment")
+                $input = "file";
+
 
 
             $return->{$name}= (object)[
@@ -998,16 +1121,6 @@ class CrudBase extends \BaseModel {
                         "required"       => $column->getNotNull()
                         //"value"            => $value
                         ];
-        }
-
-
-        foreach ($return as $column) {
-
-            if (in_array($column->input, $this->inputFiles))
-            {
-                if(isset($return->{$column->name."_name"}))
-                    $return->{$column->name."_name"}->input = "hidden";
-            }
         }
 
 
@@ -1035,6 +1148,8 @@ class CrudBase extends \BaseModel {
         else
             $viewColumns  = $this->getCrud($view);
 
+
+
         $return      = new StdClass; 
 
         if(($view == "advance_search" or $view == "search") and count($viewColumns) == 0) 
@@ -1048,7 +1163,6 @@ class CrudBase extends \BaseModel {
         $columns     = $this->getColumns($id);
 
            
-
 
         if(count($viewColumns) == 0)
         {
@@ -1110,16 +1224,12 @@ class CrudBase extends \BaseModel {
             {
                 // without primary key
 
-                if($column->name != $this->getKeyName())
+                if($column->is_primary != 1)
                 {
                     if($column->required)
                         $rule[] = "required";
 
-                    if($column->length > 0)
-                        $rule[] = "max:".$column->length;
 
-                    if($column->length >= 2)
-                        $rule[] = "min:2";
 
                     if( $column->input == "email")
                     {
@@ -1138,13 +1248,23 @@ class CrudBase extends \BaseModel {
                     if( in_array($column->type, $integer))
                         $rule[] = "integer";
 
-                    $allowed = array_get($this->inputFiles, $column->input);
+                    $allowed = isset($this->inputFiles[$column->input]);
                     
                     
                     if($allowed)
                     {
-                        $rule[] = "max:1000";
-                        $rule[] = "mimes:".implode(",", $this->allowed[$allowed]);   
+
+                        if(isset($this->allowed[$this->inputFiles[$column->input]]))
+                            $rule[] = "mimes:".implode(",",$this->allowed[$this->inputFiles[$column->input]] ); 
+
+                        $rule[] = "max:1000";    
+                    }else
+                    {
+                        if($column->length > 0)
+                            $rule[] = "max:".$column->length;
+
+                        if($column->length >= 2)
+                            $rule[] = "min:2";
                     }
                         
                     
@@ -1195,4 +1315,6 @@ class CrudBase extends \BaseModel {
         return $model;
     }
     
+
+
 }

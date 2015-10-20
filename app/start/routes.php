@@ -19,6 +19,7 @@ if(getenv('APP_ADMIN_PREFIX'))
 Route::get( '/storage/image/{id}', 'StorageController@image' );
 Route::get( '/storage/image/{id}/{size}', 'StorageController@image' );
 Route::get( '/storage/video/{id}', 'StorageController@video' );
+Route::get( '/storage/download/{id}', 'StorageController@download' );
 
 
 Route::get('/'.getenv('APP_ADMIN_PREFIX'), function(){

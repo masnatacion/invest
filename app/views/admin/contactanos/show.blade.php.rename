@@ -116,6 +116,38 @@
 		{{ parseToHTML($columns->deleted_at,$record,$fk_column) }}
 	</div>
 </div>
+<div class="row">
+	<div class="col-xs-2 text-right ">
+		{{ Form::label($columns->internal_use->input, $columns->internal_use->label) }}
+	</div>
+	<div class="col-xs-10 ">
+		{{ parseToHTML($columns->internal_use,$record,$fk_column) }}
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-2 text-right ">
+		{{ Form::label($columns->created_table->input, $columns->created_table->label) }}
+	</div>
+	<div class="col-xs-10 ">
+		{{ parseToHTML($columns->created_table,$record,$fk_column) }}
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-2 text-right ">
+		{{ Form::label($columns->updated_table->input, $columns->updated_table->label) }}
+	</div>
+	<div class="col-xs-10 ">
+		{{ parseToHTML($columns->updated_table,$record,$fk_column) }}
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-2 text-right ">
+		{{ Form::label($columns->deleted_table->input, $columns->deleted_table->label) }}
+	</div>
+	<div class="col-xs-10 ">
+		{{ parseToHTML($columns->deleted_table,$record,$fk_column) }}
+	</div>
+</div>
 
 @stop
 

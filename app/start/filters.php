@@ -12,17 +12,17 @@
 App::error(function(Exception $exception, $code)
 {
 
-	if (Request::is(getenv('APP_ADMIN_PREFIX').'/*'))
+	if (Request::is('admin/*'))
 	{
+    	if (!Auth::admin()->check())
+        	return Response::view( 'admin.home.login', compact('message'), 404);
+
 	    switch ($code)
 	    {
 	        case 403:
 	            return Response::view( 'admin.error.403', compact('message'), 403);
 	        case 404:
-	        	if (Auth::admin()->check())
-	            	return Response::view( 'admin.error.404', compact('message'), 404);
-	            else
-	            	return Response::view( 'admin.home.login', compact('message'), 404);
+	        	return Response::view( 'admin.error.404', compact('message'), 404);
 	    }
 	}
 
@@ -56,7 +56,7 @@ App::error(function(Exception $exception, $code)
 
 App::before(function($request)
 {
-	//
+	
 });
 
 
@@ -78,7 +78,7 @@ App::after(function($request, $response)
 
 Route::filter('/'.getenv('APP_ADMIN_PREFIX'), function()
 {
-	if (Request::is(getenv('APP_ADMIN_PREFIX').'/*'))
+	if (Request::is('admin/*'))
 	{
 		if (Auth::admin()->check())
 			return View::make('dashboard.dashboard');
@@ -90,7 +90,7 @@ Route::filter('/'.getenv('APP_ADMIN_PREFIX'), function()
 
 Route::filter('auth', function()
 {
-	if (Request::is(getenv('APP_ADMIN_PREFIX').'/*'))
+	if (Request::is('admin/*'))
 	{
 		if (Auth::admin()->guest())
 		{
@@ -127,7 +127,7 @@ Route::filter('auth.basic', function()
 
 Route::filter('guest', function()
 {
-	if (Request::is(getenv('APP_ADMIN_PREFIX').'/*'))
+	if (Request::is('admin/*'))
 	{
 		if (Auth::admin()->check()) return Redirect::to('/');
 	}

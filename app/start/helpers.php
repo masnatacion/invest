@@ -1,5 +1,16 @@
 <?php
 
+function browser()
+{
+    return new \Jenssegers\Agent\Agent();
+}
+
+
+function is_assoc(array $array) {
+  return (bool)count(array_filter(array_keys($array), 'is_string'));
+}
+
+
 function parseToHTML($column,$record,$fk_column)
 {
 
@@ -11,11 +22,41 @@ function parseToHTML($column,$record,$fk_column)
         {
 
             $is_with_link = getFKColumn($column->name,$record,$fk_column);
-            if($is_with_link != "---" and $is_with_link!="")
-                return HTML::link(getenv('APP_ADMIN_PREFIX')."/".toTable($column->model)."/".$record->{$column->name},$is_with_link) ;
-            else
-                return $is_with_link ;
-            
+
+            if(in_array($column->name,["created_by","updated_by","deleted_by"]))
+            {
+
+                $multi = Config::get('auth.multi');
+                $table = $multi["customer"]["table"];
+
+                $table_column = explode("_", $column->name);
+                $table_column = $table_column[0];
+
+                if($record->{$table_column."_table"} == $table)
+                {
+                    if($is_with_link != "---" and $is_with_link!="")
+                        return HTML::link(getenv('APP_ADMIN_PREFIX')."/".$table."/".$record->{$column->name},$is_with_link) ;
+                    else
+                        return $is_with_link;
+
+                }else{
+
+                    if($is_with_link != "---" and $is_with_link!="")
+                        return HTML::link(getenv('APP_ADMIN_PREFIX')."/".toTable($column->model)."/".$record->{$column->name},$is_with_link) ;
+                    else
+                        return $is_with_link ;
+                }    
+
+
+            }else{
+
+                if($is_with_link != "---" and $is_with_link!="")
+                    return HTML::link(getenv('APP_ADMIN_PREFIX')."/".toTable($column->model)."/".$record->{$column->name},$is_with_link) ;
+                else
+                    return $is_with_link ;
+
+            }
+
         }
         else if($record->{$column->name} == 0)
             return $record->{$column->name};
@@ -64,7 +105,7 @@ function getCurrentAction(){
 
 function getAdminAction(){
     
-    if(!\Auth::admin()->check())
+    if(!\Request::is('admin*'))
         return true;
     else
         return getCurrentAction();
@@ -98,7 +139,37 @@ function getFirstAction()
 function getFKColumn($column = NULL,$default_record = [],$fk_column = [],$first = true)
 {
 
-    if(isset($default_record->{$column."_record"}))
+
+    if(in_array($column,["created_by","updated_by","deleted_by"]))
+    {
+
+        $multi = Config::get('auth.multi');
+        $table = $multi["admin"]["table"];
+
+        $table_column = explode("_", $column);
+        $table_column = $table_column[0];
+        $record = null;
+        
+        if(!empty($default_record->{$table_column."_table"}))
+        {
+            if($default_record->{$table_column."_table"} != $table){
+                if($first)
+                    $record = $default_record->{$column."_customer_record"}()->first();
+                else
+                    $record = $default_record->{$column."_customer_record"};
+            }else{
+                if($first)
+                    $record = $default_record->{$column."_record"}()->first();
+                else
+                    $record = $default_record->{$column."_record"};
+            }
+
+        }
+
+        if(!$record)
+            return "---";
+
+    }elseif(isset($default_record->{$column."_record"}))
     {
 
         if($first)
@@ -284,11 +355,21 @@ function upload($class,$record = null)
             foreach ($file_inputs as $file) {
                 if (\Input::file($file)->isValid()) {
 
+
+                  
+
                   if(is_string($class))
                     $fileName = md5($class); // renameing image
                   else       
                     $fileName = md5($class->getTable()."|".$file."|".$record->{$class->getKeyName()}); // renameing image
                   
+
+                  if(!str_contains($fileName,"."))
+                  {
+                     $extension = \Input::file($file)->getClientOriginalExtension();
+                     $fileName  = $fileName.".".$extension;
+                  }
+
                   \Input::file($file)->move($destinationPath, $fileName); // uploading file to given path
 
                     if($record)
@@ -305,9 +386,9 @@ function upload($class,$record = null)
 
 
 
-function show($class)
+function show($class,$id=null)
 {
-    return update($class,null,null);
+    return update($class,$id,[]);
 }
 
 function create($class,$inputs = [],$validations = [])
@@ -315,18 +396,18 @@ function create($class,$inputs = [],$validations = [])
     return update($class,null,$inputs,$validations);
 }
 
-function update($class,$id = null,$inputs = [],$validations = [])
+function update($class,$id = null,$inputs = [],$validations = [],$record = null)
 {
     $success = false;
 
     if(is_string($class))
         $class   = new $class();
-    
 
-    if(count($inputs) == 0)
+
+    if(count($inputs) == 0 and \Request::isMethod('post'))
         $inputs = \Input::all();
 
-
+   
     $columns   = $class->getColumnsByView($inputs);
 
 
@@ -335,19 +416,20 @@ function update($class,$id = null,$inputs = [],$validations = [])
 
     if(count($inputs) > 0)
     {
-        
 
         if(!$validations)
-            $validations = $class->getValidations($columns);
+            $validations = $class->getValidations($columns,$id);
 
-        $validator        = \Validator::make($inputs, $validations);
-        $isFail   = $validator->fails();
+        $validator      = \Validator::make($inputs, $validations);
+        $isFail         = $validator->fails();
+
 
         if(!$isFail)
         {
-            if($id)
+            if($id and !$record)
                 $record = $class::find($id);
-            else
+
+            if(!$record)
                 $record = $class;
 
 
@@ -372,8 +454,6 @@ function update($class,$id = null,$inputs = [],$validations = [])
 
                 $key_name    = $class->getKeyName();
 
-                $params->key_value = $class->{$key_name};
-                $params->record = $record;
 
                 if(count($file_inputs) > 0)
                     upload($class,$record);
@@ -382,9 +462,7 @@ function update($class,$id = null,$inputs = [],$validations = [])
 
 
 
-    }
-
-    if(!$id)
+    }else 
     {
         $success = true;
         $record = [];
@@ -396,8 +474,10 @@ function update($class,$id = null,$inputs = [],$validations = [])
 
 
 
-    return (object)["success" => $success, "record" => $record, "isFail"=> $isFail, "validator"=>$validator];
+    return (object)["success" => $success,"columns" => $columns, "record" => $record, "isFail"=> $isFail, "validator"=>$validator];
 }
+
+
 
 
 ?>

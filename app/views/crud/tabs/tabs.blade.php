@@ -5,7 +5,7 @@
 <br>
 
 
-<div role="tabpanel">
+<div role="tabpanel" class="scrolltab">
 
   <!-- Nav tabs -->
   <div class="scroller scroller-left"><i class="glyphicon glyphicon-chevron-left"></i></div>

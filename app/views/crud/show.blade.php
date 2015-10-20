@@ -11,7 +11,7 @@
 						{{ Form::label($column->input, $column->label) }}
 					</div>
 					<div class="col-xs-10 h4">
-						{{$column->is_primary}}
+						{{ $record->$key_name }}
                 	</div>
 			@else
 					<div class="col-xs-2 text-right">

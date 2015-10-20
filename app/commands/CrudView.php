@@ -44,6 +44,7 @@ class CrudView extends Command
         'remotemultiple'  => '{{ Form::remotemultiple("$name",$record->$name,["table"=>$model,"class" => "form-control","placeholder"=>"$placeholder"] ); }}',
         'remotecombo'     => '{{ Form::remotecombo("$name",$record->$name,["table"=>$model,"class" => "form-control","placeholder"=>"$placeholder"] ); }}',
         'combo'           => '{{ Form::combo("$name",$record->$name,["class" => "form-control","placeholder"=>"$placeholder"],$columns->$name->data ); }}',
+        'enum'            => '{{ Form::enum("$name",$record->$name,["class" => "form-control","placeholder"=>"$placeholder"],$columns->$name->data ); }}',
         'multiple'        => '{{ Form::multiple("$name",$record->$name,["class" => "form-control","placeholder"=>"$placeholder"],$columns->$name->data ); }}',
         'select'          => '{{ Form::combo("$name",$record->$name,["class" => "form-control","placeholder"=>"$placeholder"],$columns->$name->data ); }}',
         
@@ -73,7 +74,7 @@ class CrudView extends Command
         'document'         => '{{ Form::filepicker("$name",$record->$name) }}',
         'zip'              => '{{ Form::filepicker("$name",$record->$name) }}',
         'file'             => '{{ Form::filepicker("$name",$record->$name) }}',
-
+        'cropper'          => '{{ Form::cropper("$name",$record->$name) }}',
 
         'addinput'         => '{{ Form::addinput("$name",$record->$name,["class"=>"form-control","placeholder"=>"$placeholder"]) }}',
 

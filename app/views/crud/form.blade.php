@@ -30,7 +30,7 @@
 
         @elseif ($column->input == "audio" or  $column->input == "image" or  $column->input == "video" or  $column->input == "document" or  $column->input == "zip" or  $column->input == "file")
 
-            {{ Form::filepicker($column->name,$record->{$column->name},["record" => $record]) }}
+            {{ Form::filepicker($column->name,$record->{$column->name}) }}
 
          @elseif ( $column->input == "money" or $column->input =="currency")
          

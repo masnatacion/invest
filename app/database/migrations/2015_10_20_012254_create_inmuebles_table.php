@@ -34,6 +34,10 @@ class CreateInmueblesTable extends Migration {
 			$table->integer('deleted_by')->nullable();
 			$table->timestamps();
 			$table->softDeletes();
+			$table->enum('internal_use', array('Yes','No'));
+			$table->string('created_table', 35)->nullable();
+			$table->string('updated_table', 35)->nullable();
+			$table->string('deleted_table', 35)->nullable();
 		});
 	}
 

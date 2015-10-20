@@ -101,7 +101,13 @@ class CrudMigration extends Command
     {
         $tables  = $this->getTables();
         $columns = [
-                        
+                           
+                        "internal_use"  => "enum",
+                             
+                        "created_table" => "string",
+                        "updated_table" => "string",
+                        "deleted_table" => "string",
+
                         "created_by" => "integer",
                         "updated_by" => "integer",
                         "deleted_by" => "integer",
@@ -127,12 +133,33 @@ class CrudMigration extends Command
                 $this->line("$table");
             
 
-            Schema::table($table, function($object_table) use($add_columns)
+            Schema::table($table, function($object_table) use($add_columns,$table)
             {
+                $this->line("$table");
                 foreach ($add_columns as $column => $type)
-                    $object_table->{$type}($column)->nullable();
-                
+                {
+                    if($type == "string")
+                        $object_table->string($column,35)->nullable();
+                    elseif($type == "enum")
+                        $object_table->enum($column,array('Yes', 'No'));
+                    else
+                        $object_table->{$type}($column)->nullable();
+                }
+
+                // se elimnara despues
+                if (Schema::hasColumn($table, 'from_tbl'))
+                    $object_table->dropColumn('from_tbl');
+
             });
+
+            // se elimnara despues
+            if(Schema::hasColumn($table, 'attachment'))
+            {
+                DB::update('alter table '.$table.' modify attachment varchar(42)');
+            }
+                    
+
+
             
         }
         

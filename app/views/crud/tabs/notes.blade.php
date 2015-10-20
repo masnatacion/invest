@@ -19,7 +19,18 @@
 				<tr>
 
 					@foreach ($columns as $column)
-							<td> {{ parseToHTML($column,$record,$fk_column) }}  </td> 
+
+						@if($column->name == "attachment")
+							<td> 
+								@if($record->attachment)
+									<a href="./storage/download/{{ $record->{$column->name} }}">
+										<i class="fa fa-picture-o" style="font-size:2em"></i>
+									</a> 
+								@endif
+							</td>
+						@else
+							<td> {{ HTML::decode(parseToHTML($column,$record,$fk_column)) }}  </td> 
+						@endif
 					@endforeach
 
 

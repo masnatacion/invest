@@ -105,18 +105,18 @@
 
 <div class="form-group @if ($errors->has('fotografia')) has-error @endif">
 
- {{ Form::label("text", "Fotografia") }}
+ {{ Form::label("file", "Fotografia") }}
    
-      {{ Form::text("fotografia",$record->fotografia,["class" => "form-control","placeholder"=>"Fotografia"]); }}
+      {{ Form::filepicker("fotografia",$record->fotografia) }}
     
  <span class="help-block">{{ $errors->first('fotografia') }}</span>
 </div>
 
 <div class="form-group @if ($errors->has('plano_aquitectonico')) has-error @endif">
 
- {{ Form::label("text", "Plano aquitectonico") }}
+ {{ Form::label("file", "Plano aquitectonico") }}
    
-      {{ Form::text("plano_aquitectonico",$record->plano_aquitectonico,["class" => "form-control","placeholder"=>"Plano aquitectonico"]); }}
+      {{ Form::filepicker("plano_aquitectonico",$record->plano_aquitectonico) }}
     
  <span class="help-block">{{ $errors->first('plano_aquitectonico') }}</span>
 </div>

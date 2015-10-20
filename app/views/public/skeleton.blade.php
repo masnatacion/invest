@@ -42,15 +42,16 @@
             <!-- /.modal-dialog -->
         </div>
 
-
+        <script src="http://maps.googleapis.com/maps/api/js?sensor=true&amp;libraries=places"></script>
         <?php 
 
             $js =  [
-                     '/v2/js/vendor/jquery-1.9.1.min.js',
-                     '/v2/js/vendor/jquery-migrate-1.2.1.js',
-                     '/v2/js/vendor/jquery.plugin.min.js',
+                    '/v2/js/vendor/jquery-1.9.1.min.js',
+                    '/v2/js/vendor/jquery-migrate-1.2.1.js',
+                    '/v2/js/vendor/jquery.plugin.min.js',
 
                     '/v2/js/vendor/bootstrap.min.js',
+                    '/v2/js/vendor/jquery.geocomplete.min.js',
 
 
                     '/v2/js/vendor/jquery.maphighlight.min.js',

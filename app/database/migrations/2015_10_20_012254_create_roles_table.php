@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateLogfileTable extends Migration {
+class CreateRolesTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,18 +12,19 @@ class CreateLogfileTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('logfile', function(Blueprint $table)
+		Schema::create('roles', function(Blueprint $table)
 		{
-			$table->increments('id_logfile');
-			$table->integer('primary_key');
-			$table->string('table', 30);
-			$table->string('action', 80);
-			$table->string('ip', 20);
+			$table->increments('id_roles');
+			$table->string('name')->unique();
 			$table->integer('created_by');
 			$table->integer('updated_by')->nullable();
 			$table->timestamps();
 			$table->integer('deleted_by')->nullable();
 			$table->softDeletes();
+			$table->enum('internal_use', array('Yes','No'));
+			$table->string('created_table', 35)->nullable();
+			$table->string('updated_table', 35)->nullable();
+			$table->string('deleted_table', 35)->nullable();
 		});
 	}
 
@@ -35,7 +36,7 @@ class CreateLogfileTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('logfile');
+		Schema::drop('roles');
 	}
 
 }

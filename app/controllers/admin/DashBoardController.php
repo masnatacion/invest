@@ -12,30 +12,8 @@ class DashBoardController extends \BaseController {
 	public function index()
 	{
 
-		
-		// $admin = new Role;
-		// $admin->name = 'sss21s';
-		// $admin->save();
-		// $user = User::find(1)->first();
-		// /* role attach alias */
-		// $user->id_roles =  $admin->id_roles; // Parameter can be an Role object, array or id.
-		// $user->save();
-		// // /* OR the eloquent's original: */
-		// // $user->roles()->sync( array($admin->id_roles) ); // id only
-		// $managePosts = new Permission;
-		// $managePosts->name = 'swefds';
-		// $managePosts->display_name = 'Manage Posts';
-		// $managePosts->save();
-		// $admin->perms()->sync(array($managePosts->id_permissions));
-		
-		$tables = \DB::select('SHOW TABLES');
-		$return = [];
-		foreach ($tables as $table) {
-			if($table->Tables_in_jsl != "migrations")
-				$return[] = str_singular($table->Tables_in_jsl);
-		}
-        return \View::make("admin.dashboard.dashboard")
-            ->with('tables',$return);
+	
+        return \View::make("admin.dashboard.dashboard");
 	}
 
 	/**

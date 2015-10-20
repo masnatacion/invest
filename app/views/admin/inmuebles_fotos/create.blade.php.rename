@@ -1,0 +1,29 @@
+@extends("crud.layout-form")
+
+@section("form")
+
+
+
+<div class="form-group @if ($errors->has('imagen')) has-error @endif">
+
+ {{ Form::label("text", "Imagen") }}
+   
+      {{ Form::text("imagen",$record->imagen,["class" => "form-control","placeholder"=>"Imagen"]); }}
+    
+ <span class="help-block">{{ $errors->first('imagen') }}</span>
+</div>
+
+<div class="form-group @if ($errors->has('imagen_name')) has-error @endif">
+
+ {{ Form::label("text", "Imagen name") }}
+   
+      {{ Form::text("imagen_name",$record->imagen_name,["class" => "form-control","placeholder"=>"Imagen name"]); }}
+    
+ <span class="help-block">{{ $errors->first('imagen_name') }}</span>
+</div>
+
+     
+
+@stop
+
+

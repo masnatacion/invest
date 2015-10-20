@@ -44,7 +44,7 @@
 
         </div>
 
-
+        <script src="http://maps.googleapis.com/maps/api/js?sensor=true&amp;libraries=places"></script>
         <?php 
 
             $js =  [
@@ -55,6 +55,8 @@
                     '/v2/js/vendor/bootstrap-toggle.min.js',
                     '/v2/js/vendor/summernote.js',
                     '/v2/js/vendor/select2.full.js',
+
+                    '/v2/js/vendor/jquery.geocomplete.min.js',
 
                     '/v2/js/vendor/jquery.quicksearch.js',
                     '/v2/js/vendor/jquery.multi-select.js',
@@ -116,7 +118,7 @@
         {{ Minify::javascript($js,['js_build_path'=>'v2/js/']) }}
 
 
-
+         @yield("javascript")
 
 
     </body>

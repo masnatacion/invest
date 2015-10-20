@@ -46,6 +46,10 @@ class CreateProfilesTable extends Migration {
 			$table->integer('updated_by')->nullable();
 			$table->integer('deleted_by')->nullable();
 			$table->softDeletes();
+			$table->enum('internal_use', array('Yes','No'));
+			$table->string('created_table', 35)->nullable();
+			$table->string('updated_table', 35)->nullable();
+			$table->string('deleted_table', 35)->nullable();
 		});
 	}
 

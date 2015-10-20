@@ -18,6 +18,18 @@ Form::macro('toggle', function($name, $default = "false", $attrs = [],$data=[])
     if(isset($data->data))
         $data = $data->data;
 
+
+    if(!is_assoc($data))
+    {
+        $new_data = [];
+        foreach ($data as $record) 
+            $new_data[$record] = $record;
+
+        $data = $new_data;
+    }
+
+
+
     $default = (Input::old($name)) ? Input::old($name) : $default;
         
 
@@ -158,7 +170,36 @@ Form::macro('birthday', function($name, $default = NULL, $attrs = array())
     return Form::datepicker( $name, $default, $attrs,"birthday");
 });
 
+Form::macro('fileinput', function($name, $default = NULL, $attrs = array())
+{
 
+    $default = (Input::old($name)) ? Input::old($name) : $default;
+
+            $item = '<input type="hidden" name="'. $name .'" ';
+                if($default)
+                    $item .= 'value="'. $default .'" ';
+            $item .= '>';
+
+            $item .= '<input type="file" name="'. $name .'" ';
+                if($default)
+                    $item .= 'value="'. $default .'" ';
+
+
+
+            if (is_array($attrs))
+            {
+                foreach ($attrs as $a => $v)
+                {
+                    $item .= ($a !== 0 ? $a . '="' : null) . $v .'" ';
+                }
+            }
+            $item .= '>';
+
+
+
+    return $item;
+
+});
 
 
 Form::macro('filepicker', function($name, $default = NULL, $attrs = array())
@@ -330,8 +371,16 @@ Form::macro('combo', function($name, $default = NULL, $attrs = [], $data = [])
     if(isset($data->data))
         $data = $data->data;
     
-    if(!isset($data[0]) and !isset($attrs["disable-choose"]))
-        array_unshift($data, trans('crud.choose'));
+
+    if(isset($attrs["choose"]))
+        $new_data[""] = $attrs["choose"];
+    elseif(!isset($attrs["disable-choose"]))
+        $new_data[""] = trans('crud.choose');
+
+    foreach ($data as $index => $record) 
+        $new_data[$index] = $record;
+
+    $data = $new_data;
         
 
     $attrs = array_merge($attrs_default,$attrs);
@@ -339,6 +388,45 @@ Form::macro('combo', function($name, $default = NULL, $attrs = [], $data = [])
     return Form::select($name, [$data],$default,$attrs);
 });
 
+
+Form::macro('enum', function($name, $default = NULL, $attrs = [], $data = [])
+{
+    $default = (Input::old($name)) ? Input::old($name) : $default;
+    $attrs_default = ["combo"=>"combo"];
+
+    if(isset($data->data))
+        $data = $data->data;
+        
+    $new_data = [];    
+
+
+
+    if(!is_assoc($data))
+    {
+        if(isset($attrs["choose"]))
+            $new_data[""] = $attrs["choose"];
+        elseif(!isset($attrs["disable-choose"]))
+            $new_data[""] = trans('crud.choose');
+
+        foreach ($data as $record) 
+            $new_data[$record] = $record;
+
+        $data = $new_data;
+    }
+        
+ 
+
+    $attrs = array_merge($attrs_default,$attrs);
+
+
+    return Form::select($name, [$data],$default,$attrs);
+});
+
+
+Form::macro('autocomplete', function($name, $default = NULL, $attrs = [], $data = [])
+{
+    return Form::combo($name, $default, $attrs, $data);
+});
 
 Form::macro('multiple', function($name, $default = NULL, $attrs = [], $data = [])
 {
@@ -352,7 +440,25 @@ Form::macro('multiple', function($name, $default = NULL, $attrs = [], $data = []
     if(isset($data->data))
         $data = $data->data;
 
+    if(!is_assoc($data))
+    {
+        $new_data = [];
+        foreach ($data as $record) 
+            $new_data[$record] = $record;
+
+        $data = $new_data;
+    }
+
     $attrs = array_merge($attrs_default,$attrs);
+
+    if(!is_array($default))
+    {
+        if(str_contains($default,"|"))
+            $default = explode("|", $default);
+        else
+            $default = explode(",", $default);
+    }
+        
 
     return Form::select($name, [$data],$default,$attrs);
 });
@@ -372,7 +478,8 @@ Form::macro('remotemultiple', function($name, $default = NULL, $attrs = [], $url
 
     if(!$url)
     {
-        $url = "./".getenv('APP_ADMIN_PREFIX')."/".$attrs["table"].'/remotecombo/'.$name;
+        $new_name = (isset($attrs["column"]) and !empty($attrs["column"])) ? $attrs["column"] : $name;
+        $url = "./".getenv('APP_ADMIN_PREFIX')."/".$attrs["table"].'/remotecombo/'.$new_name;
 
         if(is_numeric($default) and !empty($attrs["table"]))
         {
@@ -383,8 +490,8 @@ Form::macro('remotemultiple', function($name, $default = NULL, $attrs = [], $url
             $joins          = $current_model->getCrud("joins");
             $columns        = $current_model->getColumns();
     
-            $model          = isset($columns->$name) ? $columns->$name->model : $name;
-            $model          = isset($joins[$name]) ? $joins[$name][0]: $model;
+            $model          = isset($columns->$new_name) ? $columns->$new_name->model : $new_name;
+            $model          = isset($joins[$new_name]) ? $joins[$new_name][0]: $model;
             $model          = toModel($model);
             $model          = new $model();
             $record         = $model->find($default);
@@ -392,7 +499,7 @@ Form::macro('remotemultiple', function($name, $default = NULL, $attrs = [], $url
 
             if($record)
             {
-                $new_value      = getColumnsFK($name,$record,$fk_column);
+                $new_value      = getColumnsFK($new_name,$record,$fk_column);
                 if(!empty($new_value))
                     $value      = [$default=>$new_value];
             }
@@ -427,7 +534,8 @@ Form::macro('remotecombo', function($name, $default = NULL, $attrs = [], $url = 
 
     if(!$url)
     {
-        $url = "./".getenv('APP_ADMIN_PREFIX')."/".$attrs["table"].'/remotecombo/'.$name;
+        $new_name = (isset($attrs["column"]) and !empty($attrs["column"])) ? $attrs["column"] : $name;
+        $url  = "./".getenv('APP_ADMIN_PREFIX')."/".$attrs["table"].'/remotecombo/'.$new_name;
 
         if(is_numeric($default) and !empty($attrs["table"]))
         {
@@ -438,18 +546,21 @@ Form::macro('remotecombo', function($name, $default = NULL, $attrs = [], $url = 
             $joins          = $current_model->getCrud("joins");
             $columns        = $current_model->getColumns();
     
-            $model          = isset($columns->$name) ? $columns->$name->model : $name;
-            $model          = isset($joins[$name]) ? $joins[$name][0]: $model;
-            $model          = toModel($model);
-            $model          = new $model();
-            $record         = $model->find($default);
+            $model          = isset($columns->$new_name) ? $columns->$new_name->model : $new_name;
+            $model          = isset($joins[$new_name]) ? $joins[$new_name][0]: $model;
+            
+            if($model){
+                $model          = toModel($model);
+                $model          = new $model();
+                $record         = $model->find($default);
 
 
-            if($record)
-            {
-                $new_value      = getColumnsFK($name,$record,$fk_column);
-                if(!empty($new_value))
-                    $value      = [$default=>$new_value];
+                if($record)
+                {
+                    $new_value      = getColumnsFK($new_name,$record,$fk_column);
+                    if(!empty($new_value))
+                        $value      = [$default=>$new_value];
+                }
             }
                 
         }
@@ -474,12 +585,16 @@ Form::macro('radiogroup', function($name, $default = NULL, $attrs = array(), $da
 
     $item = '<div class="btn-group" data-toggle="buttons">';
 
+    $item .= '<input type="hidden" name="'. $name .'" ';
+    $item .= 'value="'. $default .'" ';
+    $item .= '>';
+
         foreach ($data as $key => $value) {
 
             if($default == $value)
-                $item.='<label class="btn btn-default active">';
+                $item.='<label class="btn btn-default active no-margin">';
             else
-                $item.='<label class="btn btn-default">';
+                $item.='<label class="btn btn-default no-margin">';
 
                 $item.='<input type="radio" name="'.$name.'" value="'.$value.'" ';
 
@@ -499,6 +614,8 @@ Form::macro('radiogroup', function($name, $default = NULL, $attrs = array(), $da
 
             $item.='</label>';
         }
+
+
 
 
     $item .= "</div>";
@@ -540,4 +657,50 @@ Form::macro('addinput', function($name, $default = NULL, $attrs = [],$type="file
 
 });
 
+
+
+Form::macro('cropper', function($name, $default = NULL, $attrs = [])
+{
+
+
+    $default = (Input::old($name)) ? Input::old($name) : $default;
+
+    $item= '<div class="clear">';
+        $item.= '<div class="col-md-6">';
+
+            $item .= '<input type="hidden" name="'. $name .'_cropper" ';
+            $item .= 'value="'. $default .'" ';
+            $item .= '>';
+
+            $item.= '<div class="cropper" data-name="'.$name.'">';
+                $item.= '<img style="width:10em" src="/storage/image/14dc888af34c7fb92ddf83f11820cd64.jpg">';    
+            $item .= '</div>'; 
+        $item.= '</div>';
+
+
+        $attrs_default = ["preview"=>["width"=>"200px","height"=>"200px","border"=>"1px solid gray","overflow"=>"hidden"]];
+        $attrs = array_merge($attrs_default,$attrs);
+
+
+        $item.= '<div class="col-md-6">';
+            $item .= '<div class="docs-preview" style="';
+
+                    if (is_array($attrs["preview"]))
+                    {
+                        foreach ($attrs["preview"] as $a => $v)
+                            $item .= ($a !== 0 ? $a . ":" : null) . $v ."; ";
+                    }
+                    $item .= '">';
+
+                    $item .= '<div class="img-preview"></div>';
+                    $item .= '</div>';
+            
+
+        $item.= '</div>';   
+    $item.= '</div>'; 
+
+
+    return $item;
+
+});
 

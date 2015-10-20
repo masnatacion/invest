@@ -86,7 +86,6 @@ class CrudController extends \BaseController {
     public function index()
     {
 
-
         $class     = new $this->className();
 
         $key_name  = $class->getKeyName();
@@ -261,7 +260,6 @@ class CrudController extends \BaseController {
     public function create($inputs = null)
     {
 
-
         $class     = new $this->className();
         $title     = $class->getCrud("title");
         $btn       = $class->getCrud("btn_in_create");
@@ -272,11 +270,12 @@ class CrudController extends \BaseController {
         $key_name = $class->getKeyName();
         $model    = $this->modelName;
         $columns  = $class->getColumnsByView(__FUNCTION__);
+
         $records  = [];
 
 
         foreach ($columns as $column)
-            $record[$column->name] = "";
+            $record[$column->name] = (\Input::old($column->name)) ? \Input::old($column->name) : "";
              
 
         if(!$inputs)
@@ -290,7 +289,7 @@ class CrudController extends \BaseController {
 
                 if(array_key_exists($key, $columns))
                 {
-                    $record[$key] = $value;
+                    $record[$key] = (\Input::old($column->name)) ? \Input::old($column->name) : $value;
 
                     if($is_foreign_key)
                         $columns->{$key}->input = "hidden";
@@ -302,10 +301,6 @@ class CrudController extends \BaseController {
 
 
         $path     = $this->getPathView(__FUNCTION__);
-
-
-        
-        
 
         $params = (object)[
                     "me"        => &$this,
@@ -352,16 +347,35 @@ class CrudController extends \BaseController {
         $validations = $class->getValidations($columns);
         $_inputs   = $class->getInputs($columns);
         $inputs    = \Input::only($_inputs);
-        
-
-        $validator = \Validator::make($inputs, $validations);
 
         $key_value= "";
         $key_name = $class->getKeyName();
         $model    = $this->modelName;
         $path     = $this->viewName;
 
-        $inputs = (object)$inputs;
+
+        $record = $class;
+
+
+        foreach ($columns as $column)
+        {
+            if($column->name != $key_name)
+            {
+                if(isset($inputs[$column->name]))
+                {
+                    if(is_array($inputs[$column->name]))
+                    {
+                        $inputs[$column->name]   = array_filter($inputs[$column->name]);
+                        $record->{$column->name} = implode(",", $inputs[$column->name]);
+                        $inputs[$column->name]   = $record->{$column->name};
+                    }else
+                        $record->{$column->name} = $inputs[$column->name];
+                }
+            }
+
+        }
+
+    
         $params = (object)[
                     "me"        => &$this,
                     "class"     => &$class,
@@ -369,14 +383,19 @@ class CrudController extends \BaseController {
                     "key_value" => &$key_value,
                     "key_name"  => &$key_name,
                     "action"    => __FUNCTION__,
-                    "validations"     => &$validations,
-                    "validator" => &$validator,
+                    "validations" => &$validations,
+                    "validator" => null,
                     "inputs"    => &$inputs,
                     "columns"   => &$columns,
                     "path"      => &$path
                   ];
+                  
+        $class->beforeStore($params);
+        \Event::fire($this->viewName.'.beforeStore',[$params]);
 
 
+        $validator = \Validator::make($inputs, $validations);
+        $inputs = (object)$inputs;
 
         if ($validator->fails()) {
 
@@ -393,19 +412,7 @@ class CrudController extends \BaseController {
 
         }
 
-        $record = $class;
 
-
-        foreach ($columns as $column)
-        {
-            if(is_array($inputs->{$column->name}))
-            {
-                $inputs->{$column->name} = array_filter($inputs->{$column->name});
-                $record->{$column->name} = implode(",", $inputs->{$column->name});
-            }else
-                $record->{$column->name} = $inputs->{$column->name};
-        }
-            
             //$record->{$column->name} = Input::get($column->name);
 
 
@@ -426,8 +433,7 @@ class CrudController extends \BaseController {
                   ];
 
 
-        $class->beforeStore($params);
-        \Event::fire($this->viewName.'.beforeStore',[$params]);
+
 
 
         if($record->save())
@@ -946,11 +952,11 @@ class CrudController extends \BaseController {
         if (\Input::has('search'))
             $records = $records->search(\Input::get('search'));
 
-        $records    = $records->take(10)->get();
+        $records    = $records->take(10)->orderBy($class_model->getKeyName(),"DESC")->get();
         $items = [];
 
         foreach ($records as $record) {
-            $items[] =["text" => getColumnsFK($column,$record,$fk_column,$primay_key), "id" => $record->{$class_model->getKeyName()} ] ;
+            $items[] =["text" => getColumnsFK($column,$record,$fk_column,$primay_key), "id" => $record->{$class_model->getKeyName()}, "data" => json_encode($record) ] ;
         }
 
         echo json_encode([

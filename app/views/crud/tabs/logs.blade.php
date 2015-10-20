@@ -17,7 +17,6 @@
 		@foreach($records as $record)
 			<tr>
 
-
 				@foreach ($columns as $column)
 
 					@if($column->is_primary)
@@ -35,14 +34,13 @@
 	</table>
 
 		<div class="text-center"> {{ $records->links() }} </div>
-		
+
 		    @if(count($records) == 0)
 		      <div class="padding-lg">
 		        <p class="text-center">{{ trans('crud.not_records_found') }}</p>
 		      </div>
 		      
 		    @endif
-
 </div>
 
 <script type="text/javascript">
